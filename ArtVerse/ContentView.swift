@@ -17,7 +17,8 @@ struct ContentView: View {
                 .frame(width: 26.0, height: 26.0)
                 .cornerRadius(10)
                 .padding(9)
-                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .strokeStyle(cornerRadius: 16)
             Text("Procreate for Beginners")
                 .font(.title)
                 .fontWeight(.bold)
@@ -38,18 +39,14 @@ struct ContentView: View {
         .background(.ultraThinMaterial)
         .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
         .shadow(color: Color("Shadow").opacity(0.3), radius: 10, x: 0, y: 10)
-        .overlay(
-            RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .stroke(.linearGradient(colors: [.white.opacity(0.4),.black.opacity(0.1)], startPoint: .top, endPoint: .bottom))
-                .blendMode(.overlay)
-        )
+        .strokeStyle()
         .padding(.horizontal, 20)
         .background(Image("Blob").offset(x:250, y:-100))
         .overlay(Image("Illustration 3")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height:141)
-                .offset(x:0, y:-70))
+                .offset(x:0, y:-80))
         
 
         
