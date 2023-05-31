@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294864E32A2771D9002A8DDC /* HexagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294864E22A2771D9002A8DDC /* HexagonView.swift */; };
 		29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5DF592A25F770005501B7 /* ArtVerseApp.swift */; };
 		29B5DF5C2A25F770005501B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5DF5B2A25F770005501B7 /* ContentView.swift */; };
 		29B5DF5E2A25F771005501B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B5DF5D2A25F771005501B7 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		294864E22A2771D9002A8DDC /* HexagonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonView.swift; sourceTree = "<group>"; };
 		29B5DF562A25F770005501B7 /* ArtVerse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtVerse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B5DF592A25F770005501B7 /* ArtVerseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtVerseApp.swift; sourceTree = "<group>"; };
 		29B5DF5B2A25F770005501B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				29B5DF592A25F770005501B7 /* ArtVerseApp.swift */,
 				29B5DF5B2A25F770005501B7 /* ContentView.swift */,
 				29C234FD2A2754ED001ED417 /* AccountView.swift */,
+				294864E22A2771D9002A8DDC /* HexagonView.swift */,
 				29C234FB2A274F2F001ED417 /* Styles.swift */,
 				29B5DF5D2A25F771005501B7 /* Assets.xcassets */,
 				29B5DF5F2A25F771005501B7 /* Preview Content */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */,
+				294864E32A2771D9002A8DDC /* HexagonView.swift in Sources */,
 				29C234FC2A274F2F001ED417 /* Styles.swift in Sources */,
 				29B5DF5C2A25F770005501B7 /* ContentView.swift in Sources */,
 				29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */,

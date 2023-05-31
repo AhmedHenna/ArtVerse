@@ -32,11 +32,7 @@ struct AccountView: View {
                 .padding()
                 .background(Circle().fill(.ultraThinMaterial))
                 .background(
-                    Image(systemName: "hexagon")
-                        .symbolVariant(.fill)
-                        .foregroundColor(.blue)
-                        .font(.system(size:200))
-                        .offset(x: -45, y: -120)
+                    HexagonView().offset(x: -40, y: -115)
                 )
             Text("Ahmed Henna")
                 .font(.title.weight(.semibold))
