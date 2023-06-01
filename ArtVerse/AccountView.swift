@@ -34,6 +34,11 @@ struct AccountView: View {
                 .background(
                     HexagonView().offset(x: -40, y: -115)
                 )
+                .background(
+                BlobView()
+                    .offset(x:250, y:0)
+                    .scaleEffect(0.7)
+                )
             Text("Ahmed Henna")
                 .font(.title.weight(.semibold))
             HStack{
