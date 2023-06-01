@@ -43,15 +43,15 @@ struct ContentView: View {
         .padding(.horizontal, 20)
         .background(Image("Blob").offset(x:250, y:-100))
         .overlay(Image("Illustration 3")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height:141)
-                .offset(x:0, y:-80))
-        
-
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height:141)
+            .offset(x:0, y:-80))
         
         
-    
+        
+        
+        
     }
 }
 

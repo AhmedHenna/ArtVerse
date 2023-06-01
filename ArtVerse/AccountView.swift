@@ -35,9 +35,9 @@ struct AccountView: View {
                     HexagonView().offset(x: -40, y: -115)
                 )
                 .background(
-                BlobView()
-                    .offset(x:250, y:0)
-                    .scaleEffect(0.7)
+                    BlobView()
+                        .offset(x:250, y:0)
+                        .scaleEffect(0.7)
                 )
             Text("Ahmed Henna")
                 .font(.title.weight(.semibold))
@@ -101,7 +101,7 @@ struct AccountView: View {
         }
         .tint(!isPinned ? .yellow: .gray)
     }
-
+    
 }
 
 struct AccountView_Previews: PreviewProvider {
