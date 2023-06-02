@@ -11,7 +11,7 @@ import SwiftUI
 struct ArtVerseApp: App {
     var body: some Scene {
         WindowGroup {
-            AccountView()
+            ContentView()
         }
     }
 }

@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  ArtVerse
 //
-//  Created by Ahmed Henna on 5/30/23.
+//  Created by Ahmed Henna on 6/3/23.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             Spacer()
@@ -47,18 +47,12 @@ struct ContentView: View {
             .aspectRatio(contentMode: .fit)
             .frame(height:141)
             .offset(x:0, y:-80))
-        
-        
-        
-        
-        
     }
+    
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-        ContentView().preferredColorScheme(.dark
-        )
+        HomeView()
     }
 }

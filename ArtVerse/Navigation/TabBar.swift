@@ -8,45 +8,29 @@
 import SwiftUI
 
 struct TabBar: View {
-    @State var selectedTab: Tab = .home
+    @AppStorage("selectedTab") var selectedTab: Tab = .home
     @State var color: Color = .teal
     @State var tabItemWidth: CGFloat = 0
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            Group {
-                switch selectedTab {
-                case .home:
-                    ContentView()
-                case .explore:
-                    AccountView()
-                case .notifications:
-                    AccountView()
-                case .library:
-                    AccountView()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            HStack {
-                buttons
-            }
-            .padding(.horizontal, 10)
-            .padding(.top, 15)
-            .frame(height: 90, alignment: .top)
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 34, style: .continuous))
-            .background(
-                circleGlow
-            )
-            .overlay(
-                lineIndicator
-            )
-            .strokeStyle(cornerRadius: 34)
-            .frame(maxHeight: .infinity, alignment: .bottom)
-            .ignoresSafeArea()
+        HStack {
+            buttons
         }
+        .padding(.horizontal, 10)
+        .padding(.top, 15)
+        .frame(height: 90, alignment: .top)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 34, style: .continuous))
+        .background(
+            circleGlow
+        )
+        .overlay(
+            lineIndicator
+        )
+        .strokeStyle(cornerRadius: 34)
+        .frame(maxHeight: .infinity, alignment: .bottom)
+        .ignoresSafeArea()
     }
+    
     
     var buttons: some View {
         ForEach(tabItems) { item in
