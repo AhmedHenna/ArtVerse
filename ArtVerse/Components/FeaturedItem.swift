@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeaturedItem: View {
-    var course: Course = courses[0]
+    var course: Course = courses[1]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
@@ -40,14 +40,8 @@ struct FeaturedItem: View {
         .frame(height: 380.0)
         .background(.ultraThinMaterial)
         .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-        .shadow(color: Color("Shadow").opacity(0.3), radius: 10, x: 0, y: 10)
         .strokeStyle()
         .padding(.horizontal, 20)
-        .overlay(Image(course.image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(height:course.height)
-            .offset(x:0, y:-100))
     }
 }
 
