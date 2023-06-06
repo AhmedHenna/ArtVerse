@@ -19,15 +19,6 @@ struct HomeView: View {
                 Color.clear.frame(height:500)
             }
             .coordinateSpace(name: "scroll")
-            .onPreferenceChange(ScrollPreferenceKey.self, perform: {value in
-                withAnimation (.easeInOut){
-                    if value < 0{
-                        hasScrolled = true
-                    }else{
-                        hasScrolled = false
-                    }
-                }
-            })
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
@@ -38,7 +29,17 @@ struct HomeView: View {
     var detectScroll: some View{
         GeometryReader{ proxy in
             Color.clear.preference(key: ScrollPreferenceKey.self, value: proxy.frame(in: .named("scroll")).minY)
-        }.frame(height: 0)
+        }
+        .frame(height: 0)
+        .onPreferenceChange(ScrollPreferenceKey.self, perform: {value in
+            withAnimation (.easeInOut){
+                if value < 0{
+                    hasScrolled = true
+                }else{
+                    hasScrolled = false
+                }
+            }
+        })
     }
     
     var coursesFeaturedSwiper: some View{
@@ -48,7 +49,7 @@ struct HomeView: View {
                     let minX = proxy.frame(in: .global).minX
                     
                     FeaturedItem(course: course)
-                        .padding(.vertical, 40)
+                        .padding(.vertical, 10)
                         .rotation3DEffect(.degrees(minX / -10), axis: (x: 0, y: 1, z: 0))
                         .shadow(color: Color("Shadow").opacity(0.3), radius: 10, x: 0, y: 10)
                         .blur(radius: abs(minX/50))
@@ -60,7 +61,7 @@ struct HomeView: View {
                             .offset(x: minX / 1.5)
                         )
                     
-                    }
+                }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
