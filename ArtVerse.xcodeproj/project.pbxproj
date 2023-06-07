@@ -13,6 +13,7 @@
 		294864E32A2771D9002A8DDC /* HexagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294864E22A2771D9002A8DDC /* HexagonView.swift */; };
 		2972B03B2A2F897C00A9D968 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B03A2A2F897C00A9D968 /* PreferenceKeys.swift */; };
 		2972B03D2A2F8E1A00A9D968 /* AnimatedFontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B03C2A2F8E1A00A9D968 /* AnimatedFontStyle.swift */; };
+		2985AE5B2A310ECE00EF2111 /* TransitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2985AE5A2A310ECE00EF2111 /* TransitionView.swift */; };
 		2998AE242A28F1A400BAC2D9 /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998AE232A28F1A400BAC2D9 /* BlobView.swift */; };
 		29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5DF592A25F770005501B7 /* ArtVerseApp.swift */; };
 		29B5DF5C2A25F770005501B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5DF5B2A25F770005501B7 /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 		294864E22A2771D9002A8DDC /* HexagonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonView.swift; sourceTree = "<group>"; };
 		2972B03A2A2F897C00A9D968 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		2972B03C2A2F8E1A00A9D968 /* AnimatedFontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedFontStyle.swift; sourceTree = "<group>"; };
+		2985AE5A2A310ECE00EF2111 /* TransitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionView.swift; sourceTree = "<group>"; };
 		2998AE232A28F1A400BAC2D9 /* BlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobView.swift; sourceTree = "<group>"; };
 		29B5DF562A25F770005501B7 /* ArtVerse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtVerse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B5DF592A25F770005501B7 /* ArtVerseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtVerseApp.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				29DF08BD2A2913F20053DB23 /* TabBar.swift */,
 				29B5DF5B2A25F770005501B7 /* ContentView.swift */,
 				29429B9A2A2A9C400048046A /* AppBar.swift */,
+				2985AE5A2A310ECE00EF2111 /* TransitionView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */,
 				294864E32A2771D9002A8DDC /* HexagonView.swift in Sources */,
 				29C234FC2A274F2F001ED417 /* StrokeStyle.swift in Sources */,
+				2985AE5B2A310ECE00EF2111 /* TransitionView.swift in Sources */,
 				29DF08C02A2918790053DB23 /* Tab.swift in Sources */,
 				2972B03D2A2F8E1A00A9D968 /* AnimatedFontStyle.swift in Sources */,
 				29429B9B2A2A9C400048046A /* AppBar.swift in Sources */,

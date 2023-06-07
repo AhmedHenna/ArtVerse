@@ -29,7 +29,7 @@ struct FeaturedItem: View {
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
-            Text(course.text)
+            Text(course.description)
                 .font(.footnote)
                 .lineLimit(2)
                 .frame(maxWidth: .infinity, alignment: .leading)
