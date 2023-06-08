@@ -9,19 +9,30 @@ import SwiftUI
 
 struct CourseView: View {
     var namespace : Namespace.ID
+    var course : Course = courses[0]
     @Binding var show : Bool
+    @State var appear  = [false, false, false]
     
     var body: some View {
         ZStack {
             ScrollView {
                 topContainer
+                courseContent
+                    .offset(y:120)
+                    .padding(.bottom, 200)
+                    .opacity(appear[2] ? 1 : 0)
             }
             .background(Color("Background"))
             
             closeButton
         }
         .ignoresSafeArea()
-        
+        .onAppear{
+            fadeIn()
+        }
+        .onChange(of: show) { newValue in
+            fadeOut()
+        }
     }
     
     var topContainer: some View{
@@ -32,33 +43,34 @@ struct CourseView: View {
         .frame(height: 500)
         .foregroundStyle(.black)
         .background(
-            Image("Illustration 5")
+            Image(course.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .matchedGeometryEffect(id: "image", in: namespace)
+                .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
                 .frame(height: 250)
         )
         .background(
-            Image("Background 4")
+            Image(course.bg)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: "bg", in: namespace)
+                .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
         )
-        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).matchedGeometryEffect(id: "mask", in: namespace))
+        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).matchedGeometryEffect(id: "mask\(course.id)", in: namespace))
         .overlay{
             VStack (alignment: .leading, spacing: 12){
-                Text("Blender Beginner Tutorial")
+                Text(course.title)
                     .font(.largeTitle.weight(.bold))
-                    .matchedGeometryEffect(id: "title", in: namespace)
+                    .matchedGeometryEffect(id: "title\(course.id)", in: namespace)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("17 Sections - 7 Hours".uppercased())
+                Text(course.subtitle.uppercased())
                     .font(.footnote.weight(.semibold))
-                    .matchedGeometryEffect(id: "subtitle", in: namespace)
-                Text("Blender tutorial series showing you how to use the most common features, like modelling, lighting, materials, geometry nodes and rendering - whilst making a donut.")
+                    .matchedGeometryEffect(id: "subtitle\(course.id)", in: namespace)
+                Text(course.description)
                     .lineLimit(2)
                     .font(.footnote)
-                    .matchedGeometryEffect(id: "description", in: namespace)
+                    .matchedGeometryEffect(id: "description\(course.id)", in: namespace)
                 Divider()
+                    .opacity(appear[0] ? 1 : 0)
                 HStack{
                     Image("Default Avatar")
                         .resizable()
@@ -70,13 +82,14 @@ struct CourseView: View {
                     Text("Taught by Blender Guru")
                         .font(.footnote)
                 }
+                .opacity(appear[1] ? 1 : 0)
             }
             .padding(20)
             .background(
                 Rectangle()
                     .fill(.ultraThinMaterial)
                     .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                    .matchedGeometryEffect(id: "blur", in: namespace)
+                    .matchedGeometryEffect(id: "blur\(course.id)", in: namespace)
             )
             .offset(y: 250)
             .padding(20)
@@ -99,6 +112,34 @@ struct CourseView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
         .padding(20)
+    }
+    
+    var courseContent: some View{
+        VStack(alignment: .leading, spacing: 30){
+            Text("Hello this is the blender course and here you will lear all sort of useless information like making a 3d donut").font(.title3).fontWeight(.medium)
+            Text("This Course").font(.title).bold()
+            Text("Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text textText textText textText text")
+            Text("Some more text")
+        }
+        .padding(20)
+    }
+    
+    func fadeIn(){
+        withAnimation(.easeOut.delay(0.3)){
+            appear[0] = true
+        }
+        withAnimation(.easeOut.delay(0.4)){
+            appear[1] = true
+        }
+        withAnimation(.easeOut.delay(0.5)){
+            appear[2] = true
+        }
+    }
+    
+    func fadeOut(){ 
+        appear[0] = false
+        appear[1] = false
+        appear[2] = false
     }
 }
 

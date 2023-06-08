@@ -12,6 +12,7 @@ struct HomeView: View {
     @Namespace var namespace
     @State var show = false
     @State var showStatusBar = true
+    @State var selectedID = UUID()
     
     var body: some View {
         ZStack {
@@ -27,13 +28,15 @@ struct HomeView: View {
                     .padding(.horizontal, 20)
                 
                 if !show{
-                    CourseItem(namespace: namespace, show: $show)
-                        .onTapGesture {
-                            withAnimation(.openCard){
-                                show.toggle()
-                                showStatusBar = false
+                    ForEach(courses){ course in
+                        CourseItem(course: course, namespace: namespace, show: $show)
+                            .onTapGesture {
+                                withAnimation(.openCard){
+                                    show.toggle()
+                                    showStatusBar = false
+                                }
                             }
-                        }
+                    }
                 }
             }
             .coordinateSpace(name: "scroll")
@@ -43,7 +46,16 @@ struct HomeView: View {
             .overlay(AppBar(title: "Featured", hasScrolled: $hasScrolled))
             
             if show{
-                CourseView(namespace: namespace, show: $show)
+                ForEach(courses) { course in
+                    CourseView(namespace: namespace, course: course, show: $show)
+                        .zIndex(1)
+                        .transition(
+                            .asymmetric(
+                            insertion: .opacity.animation(.easeInOut(duration: 0.1)),
+                            removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))
+                            )
+                        )
+                }
             }
         }
         .statusBar(hidden: !showStatusBar)
@@ -76,7 +88,7 @@ struct HomeView: View {
     
     var coursesFeaturedSwiper: some View{
         TabView {
-            ForEach(courses) { course in
+            ForEach(coursesFeatured) { course in
                 GeometryReader { proxy in
                     let minX = proxy.frame(in: .global).minX
                     
