@@ -28,26 +28,9 @@ struct HomeView: View {
                     .padding(.horizontal, 20)
                 
                 if !show{
-                    ForEach(courses){ course in
-                        CourseItem(course: course, namespace: namespace, show: $show)
-                            .onTapGesture {
-                                withAnimation(.openCard){
-                                    show.toggle()
-                                    showStatusBar = false
-                                    selectedID = course.id
-                                }
-                            }
-                    }
+                    courseCards
                 }else{
-                    ForEach(courses) { course in
-                        Rectangle()
-                            .fill(.white)
-                            .frame(height: 300)
-                            .cornerRadius(30)
-                            .shadow(color: Color("Shadow"), radius: 20, x: 0, y:10)
-                            .opacity(0.3)
-                        .padding(.horizontal, 30)
-                    }
+                    cardFillerToStopAutoScrollingtoTop
                 }
             }
             .coordinateSpace(name: "scroll")
@@ -124,6 +107,31 @@ struct HomeView: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 430)
         .background(Image("Blob").offset(x:250, y:-100))
+    }
+    
+    var courseCards: some View{
+        ForEach(courses){ course in
+            CourseItem(course: course, namespace: namespace, show: $show)
+                .onTapGesture {
+                    withAnimation(.openCard){
+                        show.toggle()
+                        showStatusBar = false
+                        selectedID = course.id
+                    }
+                }
+        }
+    }
+    
+    var cardFillerToStopAutoScrollingtoTop: some View{
+        ForEach(courses) { course in
+            Rectangle()
+                .fill(.white)
+                .frame(height: 300)
+                .cornerRadius(30)
+                .shadow(color: Color("Shadow"), radius: 20, x: 0, y:10)
+                .opacity(0.3)
+                .padding(.horizontal, 30)
+        }
     }
 }
 
