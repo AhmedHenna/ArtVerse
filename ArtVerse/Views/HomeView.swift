@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var hasScrolled = false
     @Namespace var namespace
+    @State var hasScrolled = false
     @State var show = false
     @State var showStatusBar = true
     @State var selectedID = UUID()
@@ -52,7 +52,7 @@ struct HomeView: View {
                         .transition(
                             .asymmetric(
                             insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-                            removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))
+                            removal: .opacity.animation(.easeInOut(duration: 0.2))
                             )
                         )
                 }

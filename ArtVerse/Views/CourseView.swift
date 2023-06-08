@@ -30,8 +30,9 @@ struct CourseView: View {
         .onAppear{
             fadeIn()
         }
-        .onChange(of: show) { newValue in
+        .onDisappear {
             fadeOut()
+
         }
     }
     
