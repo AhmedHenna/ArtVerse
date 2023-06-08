@@ -10,7 +10,7 @@ import SwiftUI
 struct CourseItem: View {
     var course: Course = courses[0]
     var namespace: Namespace.ID
-    @Binding var show: Bool
+    @Binding var courseCardPressed: Bool
     
     var body: some View {
         VStack {
@@ -62,6 +62,6 @@ struct CourseItem_Previews: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        CourseItem(namespace: namespace, show: .constant(true))
+        CourseItem(namespace: namespace, courseCardPressed: .constant(true))
     }
 }

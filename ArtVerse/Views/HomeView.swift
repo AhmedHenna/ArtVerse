@@ -10,9 +10,10 @@ import SwiftUI
 struct HomeView: View {
     @Namespace var namespace
     @State var hasScrolled = false
-    @State var show = false
+    @State var courseCardPressed = false
     @State var showStatusBar = true
     @State var selectedID = UUID()
+    @EnvironmentObject var model: Model
     
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 20)
                 
-                if !show{
+                if !courseCardPressed{
                     courseCards
                 }else{
                     cardFillerToStopAutoScrollingtoTop
@@ -35,27 +36,15 @@ struct HomeView: View {
             }
             .coordinateSpace(name: "scroll")
             .safeAreaInset(edge: .top, content: {
-                Color.clear.frame(height: 70)
-            })
+                Color.clear.frame(height: 70)})
             .overlay(AppBar(title: "Featured", hasScrolled: $hasScrolled))
             
-            if show{
-                ForEach(courses) { course in
-                    if course.id == selectedID{
-                        CourseView(namespace: namespace, course: course, show: $show)
-                            .zIndex(1)
-                            .transition(
-                                .asymmetric(
-                                    insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-                                    removal: .opacity.animation(.easeInOut(duration: 0.2))
-                                )
-                            )
-                    }
-                }
+            if courseCardPressed{
+                courseCardDetails
             }
         }
         .statusBar(hidden: !showStatusBar)
-        .onChange(of: show){ newValue in
+        .onChange(of: courseCardPressed){ newValue in
             withAnimation(.closeCard){
                 if newValue{
                     showStatusBar = false
@@ -111,10 +100,11 @@ struct HomeView: View {
     
     var courseCards: some View{
         ForEach(courses){ course in
-            CourseItem(course: course, namespace: namespace, show: $show)
+            CourseItem(course: course, namespace: namespace, courseCardPressed: $courseCardPressed)
                 .onTapGesture {
                     withAnimation(.openCard){
-                        show.toggle()
+                        courseCardPressed.toggle()
+                        model.showDetail.toggle()
                         showStatusBar = false
                         selectedID = course.id
                     }
@@ -122,6 +112,23 @@ struct HomeView: View {
         }
     }
     
+    var courseCardDetails: some View{
+        ForEach(courses) { course in
+            if course.id == selectedID{
+                CourseView(namespace: namespace, course: course, courseCardPressed: $courseCardPressed)
+                    .zIndex(1)
+                    .transition(
+                        .asymmetric(
+                            insertion: .opacity.animation(.easeInOut(duration: 0.1)),
+                            removal: .opacity.animation(.easeInOut(duration: 0.2))
+                        )
+                    )
+            }
+        }
+    }
+    
+    /*this just acts as the courses card, since once one of them is clicked they are removed
+    so this will help stop the autoscrolling to the top*/
     var cardFillerToStopAutoScrollingtoTop: some View{
         ForEach(courses) { course in
             Rectangle()
@@ -138,5 +145,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(Model())
     }
 }

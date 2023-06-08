@@ -10,8 +10,9 @@ import SwiftUI
 struct CourseView: View {
     var namespace : Namespace.ID
     var course : Course = courses[0]
-    @Binding var show : Bool
+    @Binding var courseCardPressed : Bool
     @State var appear  = [false, false, false]
+    @EnvironmentObject var model: Model
     
     var body: some View {
         ZStack {
@@ -101,7 +102,9 @@ struct CourseView: View {
     var closeButton: some View{
         Button {
             withAnimation(.closeCard){
-                show.toggle()
+                courseCardPressed.toggle()
+                model.showDetail.toggle()
+                
             }
             
         } label: {
@@ -148,6 +151,7 @@ struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        CourseView(namespace: namespace, show: .constant(true))
+        CourseView(namespace: namespace, courseCardPressed: .constant(true))
+            .environmentObject(Model())
     }
 }
