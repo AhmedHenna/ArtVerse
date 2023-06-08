@@ -34,8 +34,19 @@ struct HomeView: View {
                                 withAnimation(.openCard){
                                     show.toggle()
                                     showStatusBar = false
+                                    selectedID = course.id
                                 }
                             }
+                    }
+                }else{
+                    ForEach(courses) { course in
+                        Rectangle()
+                            .fill(.white)
+                            .frame(height: 300)
+                            .cornerRadius(30)
+                            .shadow(color: Color("Shadow"), radius: 20, x: 0, y:10)
+                            .opacity(0.3)
+                        .padding(.horizontal, 30)
                     }
                 }
             }
@@ -47,14 +58,16 @@ struct HomeView: View {
             
             if show{
                 ForEach(courses) { course in
-                    CourseView(namespace: namespace, course: course, show: $show)
-                        .zIndex(1)
-                        .transition(
-                            .asymmetric(
-                            insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-                            removal: .opacity.animation(.easeInOut(duration: 0.2))
+                    if course.id == selectedID{
+                        CourseView(namespace: namespace, course: course, show: $show)
+                            .zIndex(1)
+                            .transition(
+                                .asymmetric(
+                                    insertion: .opacity.animation(.easeInOut(duration: 0.1)),
+                                    removal: .opacity.animation(.easeInOut(duration: 0.2))
+                                )
                             )
-                        )
+                    }
                 }
             }
         }
