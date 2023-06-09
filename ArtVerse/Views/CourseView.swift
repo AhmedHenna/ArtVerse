@@ -12,6 +12,7 @@ struct CourseView: View {
     var course : Course = courses[0]
     @Binding var courseCardPressed : Bool
     @State var appear  = [false, false, false]
+    @State var viewState: CGSize = .zero
     @EnvironmentObject var model: Model
     
     var body: some View {
@@ -24,6 +25,24 @@ struct CourseView: View {
                     .opacity(appear[2] ? 1 : 0)
             }
             .background(Color("Background"))
+            .mask(RoundedRectangle(cornerRadius: viewState.width / 3, style: .continuous))
+            .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 10)
+            .scaleEffect(viewState.width / -500 + 1)
+            .background(.black.opacity(viewState.width / 500))
+            .background(.ultraThinMaterial)
+            .gesture(
+                DragGesture()
+                    .onChanged{ value in
+                        guard value.translation.width > 0 else {return}
+                        viewState = value.translation
+                    }
+                    .onEnded(){ value in
+                        withAnimation(.closeCard){
+                            viewState = .zero
+                        }
+                        
+                    }
+            )
             
             closeButton
         }
@@ -39,39 +58,41 @@ struct CourseView: View {
     
     var topContainer: some View{
         GeometryReader { proxy in
-            let scrollYPosition = proxy.frame(in: .global).minY
+            let scrollY = proxy.frame(in: .global).minY
             
-            VStack{
+            VStack {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
-            .frame(height: scrollYPosition > 0 ?  500 + scrollYPosition : 500)
+            .frame(height: scrollY > 0 ? 500 + scrollY : 500)
             .foregroundStyle(.black)
             .background(
                 Image(course.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
-                    .frame(height: 250)
-                    .offset(y: scrollYPosition > 0 ? scrollYPosition * -0.8 : 0)
+                    .offset(y: scrollY > 0 ? scrollY * -0.8 : 0)
             )
             .background(
                 Image(course.bg)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
-                    .offset(y: scrollYPosition > 0 ? -scrollYPosition : 0)
-                    .scaleEffect(scrollYPosition > 0 ? scrollYPosition / 1000 + 1 : 1)
-                    .blur(radius: scrollYPosition / 10)
+                    .offset(y: scrollY > 0 ? -scrollY : 0)
+                    .scaleEffect(scrollY > 0 ? scrollY / 1000 + 1 : 1)
+                    .blur(radius: scrollY / 10)
             )
-            .mask(RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .matchedGeometryEffect(id: "mask\(course.id)", in: namespace)
-                .offset(y: scrollYPosition > 0 ? -scrollYPosition : 0))
-            .overlay{
+            .mask(
+                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                    .matchedGeometryEffect(id: "mask\(course.id)", in: namespace)
+                    .offset(y: scrollY > 0 ? -scrollY : 0)
+            )
+            .overlay(
                 foregroundDetailBox
-                    .offset(y: scrollYPosition > 0 ? scrollYPosition * 0.6 : 0)
-            }
-        }.frame(height: 500)
+                    .offset(y: scrollY > 0 ? scrollY * -0.6 : 0)
+            )
+        }
+        .frame(height: 500)
     }
     
     var closeButton: some View{
