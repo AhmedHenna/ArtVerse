@@ -33,70 +33,45 @@ struct CourseView: View {
         }
         .onDisappear {
             fadeOut()
-
+            
         }
     }
     
     var topContainer: some View{
-        VStack{
-            Spacer()
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 500)
-        .foregroundStyle(.black)
-        .background(
-            Image(course.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
-                .frame(height: 250)
-        )
-        .background(
-            Image(course.bg)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
-        )
-        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).matchedGeometryEffect(id: "mask\(course.id)", in: namespace))
-        .overlay{
-            VStack (alignment: .leading, spacing: 12){
-                Text(course.title)
-                    .font(.largeTitle.weight(.bold))
-                    .matchedGeometryEffect(id: "title\(course.id)", in: namespace)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(course.subtitle.uppercased())
-                    .font(.footnote.weight(.semibold))
-                    .matchedGeometryEffect(id: "subtitle\(course.id)", in: namespace)
-                Text(course.description)
-                    .lineLimit(2)
-                    .font(.footnote)
-                    .matchedGeometryEffect(id: "description\(course.id)", in: namespace)
-                Divider()
-                    .opacity(appear[0] ? 1 : 0)
-                HStack{
-                    Image("Default Avatar")
-                        .resizable()
-                        .frame(width:26, height: 26)
-                        .cornerRadius(10)
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-                        .strokeStyle(cornerRadius: 18)
-                    Text("Taught by Blender Guru")
-                        .font(.footnote)
-                }
-                .opacity(appear[1] ? 1 : 0)
-            }
-            .padding(20)
-            .background(
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-                    .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                    .matchedGeometryEffect(id: "blur\(course.id)", in: namespace)
-            )
-            .offset(y: 250)
-            .padding(20)
+        GeometryReader { proxy in
+            let scrollYPosition = proxy.frame(in: .global).minY
             
-        }
+            VStack{
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: scrollYPosition > 0 ?  500 + scrollYPosition : 500)
+            .foregroundStyle(.black)
+            .background(
+                Image(course.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
+                    .frame(height: 250)
+                    .offset(y: scrollYPosition > 0 ? scrollYPosition * -0.8 : 0)
+            )
+            .background(
+                Image(course.bg)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
+                    .offset(y: scrollYPosition > 0 ? -scrollYPosition : 0)
+                    .scaleEffect(scrollYPosition > 0 ? scrollYPosition / 1000 + 1 : 1)
+                    .blur(radius: scrollYPosition / 10)
+            )
+            .mask(RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .matchedGeometryEffect(id: "mask\(course.id)", in: namespace)
+                .offset(y: scrollYPosition > 0 ? -scrollYPosition : 0))
+            .overlay{
+                foregroundDetailBox
+                    .offset(y: scrollYPosition > 0 ? scrollYPosition * 0.6 : 0)
+            }
+        }.frame(height: 500)
     }
     
     var closeButton: some View{
@@ -116,6 +91,46 @@ struct CourseView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
         .padding(20)
+    }
+    
+    var foregroundDetailBox: some View{
+        VStack (alignment: .leading, spacing: 12){
+            Text(course.title)
+                .font(.largeTitle.weight(.bold))
+                .matchedGeometryEffect(id: "title\(course.id)", in: namespace)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(course.subtitle.uppercased())
+                .font(.footnote.weight(.semibold))
+                .matchedGeometryEffect(id: "subtitle\(course.id)", in: namespace)
+            Text(course.description)
+                .lineLimit(2)
+                .font(.footnote)
+                .matchedGeometryEffect(id: "description\(course.id)", in: namespace)
+            Divider()
+                .opacity(appear[0] ? 1 : 0)
+            HStack{
+                Image("Default Avatar")
+                    .resizable()
+                    .frame(width:26, height: 26)
+                    .cornerRadius(10)
+                    .padding(8)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .strokeStyle(cornerRadius: 18)
+                Text("Taught by Blender Guru")
+                    .font(.footnote)
+            }
+            .opacity(appear[1] ? 1 : 0)
+        }
+        .padding(20)
+        .background(
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                .matchedGeometryEffect(id: "blur\(course.id)", in: namespace)
+        )
+        .offset(y: 250)
+        .padding(20)
+        
     }
     
     var courseContent: some View{
@@ -140,7 +155,7 @@ struct CourseView: View {
         }
     }
     
-    func fadeOut(){ 
+    func fadeOut(){
         appear[0] = false
         appear[1] = false
         appear[2] = false
