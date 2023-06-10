@@ -13,6 +13,7 @@ struct CourseView: View {
     @Binding var courseCardPressed : Bool
     @State var appear  = [false, false, false]
     @State var viewState: CGSize = .zero
+    @State var isDraggable = true
     @EnvironmentObject var model: Model
     
     var body: some View {
@@ -30,19 +31,7 @@ struct CourseView: View {
             .scaleEffect(viewState.width / -500 + 1)
             .background(.black.opacity(viewState.width / 500))
             .background(.ultraThinMaterial)
-            .gesture(
-                DragGesture()
-                    .onChanged{ value in
-                        guard value.translation.width > 0 else {return}
-                        viewState = value.translation
-                    }
-                    .onEnded(){ value in
-                        withAnimation(.closeCard){
-                            viewState = .zero
-                        }
-                        
-                    }
-            )
+            .gesture(isDraggable ? dragLeftSide : nil)
             
             closeButton
         }
@@ -164,6 +153,33 @@ struct CourseView: View {
         .padding(20)
     }
     
+    var dragLeftSide: some Gesture{
+        DragGesture(minimumDistance: 30, coordinateSpace: .local)
+            .onChanged{ value in
+                guard value.translation.width > 0 else {return}
+                
+                if value.startLocation.x < 100 {
+                    withAnimation(.closeCard){
+                        viewState = value.translation
+                    }
+                }
+                
+                if viewState.width > 120{
+                    closeCoursePageGesture()
+                }
+                
+            }
+            .onEnded(){ value in
+                if viewState.width > 80{
+                    closeCoursePageGesture()
+                }else{
+                    withAnimation(.closeCard){
+                        viewState = .zero
+                    }
+                }
+            }
+    }
+    
     func fadeIn(){
         withAnimation(.easeOut.delay(0.3)){
             appear[0] = true
@@ -181,6 +197,20 @@ struct CourseView: View {
         appear[1] = false
         appear[2] = false
     }
+    
+    func closeCoursePageGesture(){
+        withAnimation(.closeCard){
+            courseCardPressed.toggle()
+            model.showDetail.toggle()
+        }
+        
+        withAnimation(.closeCard){
+            viewState = .zero
+        }
+        
+        isDraggable = false
+    }
+    
 }
 
 struct CourseView_Previews: PreviewProvider {
