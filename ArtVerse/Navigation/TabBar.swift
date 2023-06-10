@@ -13,22 +13,25 @@ struct TabBar: View {
     @State var tabItemWidth: CGFloat = 0
     
     var body: some View {
-        HStack {
-            buttons
-        }
-        .padding(.horizontal, 10)
-        .padding(.top, 15)
-        .frame(height: 90, alignment: .top)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 34, style: .continuous))
-        .background(
-            circleGlow
-        )
-        .overlay(
-            lineIndicator
-        )
-        .strokeStyle(cornerRadius: 34)
-        .frame(maxHeight: .infinity, alignment: .bottom)
+        GeometryReader { proxy in
+            let differentScreenSize = proxy.safeAreaInsets.bottom > 20
+            HStack {
+                buttons
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 15)
+            .frame(height: differentScreenSize ? 88 : 62, alignment: .top)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: differentScreenSize ? 34 : 0, style: .continuous))
+            .background(
+                circleGlow
+            )
+            .overlay(
+                lineIndicator
+            )
+            .strokeStyle(cornerRadius: differentScreenSize ? 34 : 0)
+            .frame(maxHeight: .infinity, alignment: .bottom)
         .ignoresSafeArea()
+        }
     }
     
     
