@@ -18,7 +18,9 @@ struct RegisterView: View {
                 Text("Register account")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.bordered)
+            .font(.headline)
+            .blendMode(.overlay)
+            .buttonStyle(.customButton)
             .tint(.accentColor)
             .controlSize(.large)
         }
