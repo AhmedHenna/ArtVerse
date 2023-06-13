@@ -19,6 +19,7 @@ struct LogInView: View {
     @State var emailYPos: CGFloat = 0
     @State var passwordYPos: CGFloat = 0
     @State var circleColor: Color = .blue
+    @State var appear = [false, false, false]
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
     
@@ -26,58 +27,66 @@ struct LogInView: View {
         VStack (alignment: .leading, spacing: 16){
             Text("Log In")
                 .font(.largeTitle).bold()
+                .opacity(appear[0] ? 1 : 0)
+                .offset(y: appear[0] ? 0 : 20)
             Text("Access hours of courses and tutorials for all your creative needs")
                 .font(.headline)
+                .opacity(appear[1] ? 1 : 0)
+                .offset(y: appear[1] ? 0 : 20)
             
-            TextField("Email", text: $email)
-                .inputFieldStyle(icon: "envelope.open.fill")
-                .textContentType(.emailAddress)
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-                .autocorrectionDisabled(true)
-                .focused($focusField, equals: .email)
-                .shadow(color: focusField == .email ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
-                .overlay(geometry)
-                .onPreferenceChange(CirclePreferenceKey.self){ value in
-                    emailYPos = value
-                    circlePosition = value
+            Group{
+                TextField("Email", text: $email)
+                    .inputFieldStyle(icon: "envelope.open.fill")
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled(true)
+                    .focused($focusField, equals: .email)
+                    .shadow(color: focusField == .email ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self){ value in
+                        emailYPos = value
+                        circlePosition = value
+                    }
+                
+                SecureField("Password", text: $password)
+                    .inputFieldStyle(icon: "key.fill")
+                    .textContentType(.password)
+                    .focused($focusField, equals: .password)
+                    .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self){ value in
+                        passwordYPos = value
+                    }
+                
+                Button {} label: {
+                    Text("Log in")
+                        .frame(maxWidth: .infinity)
                 }
-            
-            SecureField("Password", text: $password)
-                .inputFieldStyle(icon: "key.fill")
-                .textContentType(.password)
-                .focused($focusField, equals: .password)
-                .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
-                .overlay(geometry)
-                .onPreferenceChange(CirclePreferenceKey.self){ value in
-                    passwordYPos = value
+                .font(.headline)
+                .blendMode(.overlay)
+                .buttonStyle(.customButton)
+                .tint(.accentColor)
+                .controlSize(.large)
+                .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
+                
+                
+                Divider()
+                
+                HStack {
+                    Text("No account yet?")
+                    Button {
+                        model.selectedModal = .register
+                    } label: {
+                        Text("**Register**")
+                    }
                 }
-
-            Button {} label: {
-                Text("Log in")
-                    .frame(maxWidth: .infinity)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .accentColor(.secondary)
             }
-            .font(.headline)
-            .blendMode(.overlay)
-            .buttonStyle(.customButton)
-            .tint(.accentColor)
-            .controlSize(.large)
-            .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-
-            
-            Divider()
-            
-            HStack {
-                Text("No account yet?")
-                Button {
-                    model.selectedModal = .register
-                } label: {
-                    Text("**Register**")
-                }
-            }
-            .font(.footnote)
-            .foregroundColor(.secondary)
-            .accentColor(.secondary)
+            .opacity(appear[2] ? 1 : 0)
+            .offset(y: appear[2] ? 0 : 20)
         }
         .padding(20)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -88,6 +97,8 @@ struct LogInView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .offset(y: circlePosition)
         )
+        .coordinateSpace(name: "container")
+        .strokeStyle(cornerRadius: 30)
         .onChange(of: focusField, perform: { newValue in
             withAnimation{
                 if newValue == .email{
@@ -99,8 +110,17 @@ struct LogInView: View {
                 }
             }
         })
-        .coordinateSpace(name: "container")
-        .strokeStyle(cornerRadius: 30)
+        .onAppear(){
+            withAnimation(.spring().delay(0.1)){
+                appear[0] = true
+            }
+            withAnimation(.spring().delay(0.2)){
+                appear[1] = true
+            }
+            withAnimation(.spring().delay(0.3)){
+                appear[2] = true
+            }
+        }
     }
     
     var geometry: some View{

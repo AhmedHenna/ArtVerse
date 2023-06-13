@@ -54,7 +54,6 @@ struct SearchView: View {
                 Button {
                     showCourseView = true
                     selectedIndex = index
-                    print(selectedIndex)
                 } label: {
                     HStack (alignment: .top, spacing: 15){
                         Image(item.image)
