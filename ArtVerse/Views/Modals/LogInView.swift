@@ -1,13 +1,13 @@
 //
-//  RegisterView.swift
+//  LogInView.swift
 //  ArtVerse
 //
-//  Created by Ahmed Henna on 6/12/23.
+//  Created by Ahmed Henna on 6/13/23.
 //
 
 import SwiftUI
 
-struct RegisterView: View {
+struct LogInView: View {
     enum Field: Hashable{
         case email
         case password
@@ -20,10 +20,11 @@ struct RegisterView: View {
     @State var passwordYPos: CGFloat = 0
     @State var circleColor: Color = .blue
     @FocusState var focusField: Field?
+    @EnvironmentObject var model: Model
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
-            Text("Register")
+            Text("Log In")
                 .font(.largeTitle).bold()
             Text("Access hours of courses and tutorials for all your creative needs")
                 .font(.headline)
@@ -53,7 +54,7 @@ struct RegisterView: View {
                 }
 
             Button {} label: {
-                Text("Register account")
+                Text("Log in")
                     .frame(maxWidth: .infinity)
             }
             .font(.headline)
@@ -61,13 +62,17 @@ struct RegisterView: View {
             .buttonStyle(.customButton)
             .tint(.accentColor)
             .controlSize(.large)
+            .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
+
             
             Divider()
             
             HStack {
-                Text("Already have an account?")
-                Button {} label: {
-                    Text("**Log in**")
+                Text("No account yet?")
+                Button {
+                    model.selectedModal = .register
+                } label: {
+                    Text("**Register**")
                 }
             }
             .font(.footnote)
@@ -96,9 +101,6 @@ struct RegisterView: View {
         })
         .coordinateSpace(name: "container")
         .strokeStyle(cornerRadius: 30)
-        .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-        .padding(20)
-        .background(Image("Blob").offset(x: 200, y: -100))
     }
     
     var geometry: some View{
@@ -110,8 +112,9 @@ struct RegisterView: View {
     
 }
 
-struct RegisterView_Previews: PreviewProvider {
+struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        LogInView()
+            .environmentObject(Model())
     }
 }
