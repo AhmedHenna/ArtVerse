@@ -9,12 +9,13 @@ import SwiftUI
 
 struct CircularView: View {
     var value: CGFloat = 0.5
+    var lineWidth: Double = 4
     @State var showProgressBar = false
     
     var body: some View {
         Circle()
             .trim(from: 0, to: showProgressBar ? value : 0)
-            .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
+            .stroke(style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
             .fill(.angularGradient(colors: [.purple, .pink, .purple],
                                    center: .center, startAngle: .degrees(0),
                                    endAngle: .degrees(360)))

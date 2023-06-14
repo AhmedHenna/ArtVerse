@@ -39,6 +39,7 @@
 		29E19C7B2A3A0128007F6AA7 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E19C7A2A3A0128007F6AA7 /* CircularView.swift */; };
 		29E19C7D2A3A01C9007F6AA7 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E19C7C2A3A01C9007F6AA7 /* SectionView.swift */; };
 		29E5ADF92A2FB69F00B68FCD /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E5ADF82A2FB69F00B68FCD /* Course.swift */; };
+		29EDC3662A3A46400009A2E7 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3652A3A46400009A2E7 /* PlayButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		29E19C7A2A3A0128007F6AA7 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
 		29E19C7C2A3A01C9007F6AA7 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		29E5ADF82A2FB69F00B68FCD /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		29EDC3652A3A46400009A2E7 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				2917D9282A393C55003A668C /* AvatarView.swift */,
 				29E19C782A3A00CA007F6AA7 /* SectionRow.swift */,
 				29E19C7A2A3A0128007F6AA7 /* CircularView.swift */,
+				29EDC3652A3A46400009A2E7 /* PlayButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				29429B922A2A96E90048046A /* HomeView.swift in Sources */,
 				29D31DD92A353CD1004F5B7A /* SearchView.swift in Sources */,
 				29E19C7D2A3A01C9007F6AA7 /* SectionView.swift in Sources */,
+				29EDC3662A3A46400009A2E7 /* PlayButton.swift in Sources */,
 				29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */,
 				29886A032A379BEA0083F2BA /* RegisterView.swift in Sources */,
 				2985AE612A31246F00EF2111 /* Animations.swift in Sources */,
