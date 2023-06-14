@@ -14,6 +14,8 @@ struct CourseView: View {
     @State var appear  = [false, false, false]
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
+    @State var showSection = false
+    @State var selectedIndex = 0
     @EnvironmentObject var model: Model
     
     var body: some View {
@@ -149,13 +151,23 @@ struct CourseView: View {
     }
     
     var courseContent: some View{
-        VStack(alignment: .leading, spacing: 30){
-            Text("Hello this is the blender course and here you will lear all sort of useless information like making a 3d donut").font(.title3).fontWeight(.medium)
-            Text("This Course").font(.title).bold()
-            Text("Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text textText textText textText text")
-            Text("Some more text")
+        VStack (alignment: .leading){
+            ForEach(Array(courseSections.enumerated()), id: \.offset){ index, section in
+                if index != 0 {Divider()}
+                SectionRow(section: section)
+                    .onTapGesture {
+                        selectedIndex = index
+                        showSection = true
+                    }
+                    .frame(maxWidth: 500)
+            }
         }
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
+        .strokeStyle(cornerRadius: 30)
         .padding(20)
+        .sheet(isPresented: $showSection) {
+            SectionView(section: courseSections[selectedIndex])
+        }
     }
     
     var dragLeftSide: some Gesture{
