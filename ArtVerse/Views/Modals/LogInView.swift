@@ -22,6 +22,7 @@ struct LogInView: View {
     @State var appear = [false, false, false]
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
+    @AppStorage("isLoggedIn") var isLoggedIn = false
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
@@ -59,7 +60,9 @@ struct LogInView: View {
                         passwordYPos = value
                     }
                 
-                Button {} label: {
+                Button {
+                    isLoggedIn = true
+                } label: {
                     Text("Log in")
                         .frame(maxWidth: .infinity)
                 }

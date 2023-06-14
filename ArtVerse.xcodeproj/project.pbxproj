@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2917D9292A393C55003A668C /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2917D9282A393C55003A668C /* AvatarView.swift */; };
 		29429B922A2A96E90048046A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B912A2A96E90048046A /* HomeView.swift */; };
 		29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B982A2A9A7E0048046A /* FeaturedItem.swift */; };
 		29429B9B2A2A9C400048046A /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B9A2A2A9C400048046A /* AppBar.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2917D9282A393C55003A668C /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		29429B912A2A96E90048046A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		29429B982A2A9A7E0048046A /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		29429B9A2A2A9C400048046A /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				294864E22A2771D9002A8DDC /* HexagonView.swift */,
 				29429B982A2A9A7E0048046A /* FeaturedItem.swift */,
 				2985AE5C2A311B2200EF2111 /* CourseItem.swift */,
+				2917D9282A393C55003A668C /* AvatarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				29D31DDB2A35413A004F5B7A /* Suggestions.swift in Sources */,
 				2998AE242A28F1A400BAC2D9 /* BlobView.swift in Sources */,
 				29E5ADF92A2FB69F00B68FCD /* Course.swift in Sources */,
+				2917D9292A393C55003A668C /* AvatarView.swift in Sources */,
 				29B5DF5C2A25F770005501B7 /* ContentView.swift in Sources */,
 				29886A092A37BFAF0083F2BA /* ModalView.swift in Sources */,
 				2985AE5D2A311B2200EF2111 /* CourseItem.swift in Sources */,
