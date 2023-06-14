@@ -18,11 +18,11 @@ struct ContentView: View {
             case .home:
                 HomeView()
             case .explore:
-                AccountView()
+                ExploreView()
             case .notifications:
-                AccountView()
+                NotificationsView()
             case .library:
-                AccountView()
+                LibraryView()
             }
             TabBar()
                 .offset(y: model.showDetail ? 200 : 0)
@@ -33,8 +33,9 @@ struct ContentView: View {
             }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            Color.clear.frame(height:50)
+            Color.clear.frame(height:90)
         }
+        .dynamicTypeSize(.large ... .xxLarge)
     }
     
 }

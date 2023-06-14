@@ -14,7 +14,7 @@ struct TabBar: View {
     
     var body: some View {
         GeometryReader { proxy in
-            let differentScreenSize = proxy.safeAreaInsets.bottom > 20
+            let differentScreenSize = proxy.safeAreaInsets.bottom - 90 > 20
             HStack {
                 buttons
             }
