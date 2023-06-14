@@ -42,7 +42,7 @@ struct LibraryView: View {
                 Color.clear.frame(height: 70)
             }
             .overlay(AppBar(title: "Library", hasScrolled: .constant(true)))
-            .background(Image("Blob 2").offset(y: -650))
+            .background(Image("Blob").offset(y: -300))
         }
     }
     

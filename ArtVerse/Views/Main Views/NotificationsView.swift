@@ -19,7 +19,7 @@ struct NotificationsView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay(AppBar(title: "Notifications", hasScrolled: .constant(true)))
-            .background(Image("Blob 2").offset(y: -300))
+            .background(Image("Blob").offset(x: -100 , y: -300))
         }
     }
     
