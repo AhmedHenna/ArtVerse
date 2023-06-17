@@ -19,26 +19,28 @@ struct SearchView: View {
             ScrollView {
                 VStack{
                     searchResults
+                    Text(courses[selectedIndex].title).foregroundColor(.clear)
                 }
                 .padding(20)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .strokeStyle(cornerRadius: 30)
                 .padding(20)
-                .background(Image("Blob").offset(x: -100, y: -200))
-                
             }
+            .background(Image("Blob").offset(x: -100, y: -200))
             .searchable(text: $text, placement:
                     .navigationBarDrawer(displayMode: .always), prompt: Text("Blender, Procreate, Ps")){
                         ForEach(suggestions){ suggestion in
-                            Button {
+                            if text == "" {
+                                Button {
                                 text = suggestion.text
                             } label:{
                                 Text(suggestion.text)
                                     .searchCompletion(suggestion.text)
                             }
                         }
+                            
+                        }
                     }
-                    .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(trailing: Button {presentationMode.wrappedValue.dismiss()}
                                         label: {Text("Done").bold()})
                     .sheet(isPresented: $showCourseView) {
@@ -48,7 +50,9 @@ struct SearchView: View {
     }
     
     var searchResults: some View{
-        ForEach(Array(courses.enumerated()), id: \.offset) {index, item in
+        ForEach(courses.indices, id: \.self) { index in
+            let item = courses[index]
+            
             if item.title.contains(text) || text == ""  {
                 if index != 0 {Divider()}
                 Button {
