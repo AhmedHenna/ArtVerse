@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 struct RegisterView: View {
     enum Field: Hashable{
@@ -22,6 +23,8 @@ struct RegisterView: View {
     @State var appear = [false, false, false]
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
+    private let generator = UISelectionFeedbackGenerator()
+
     
     
     var body: some View {
@@ -37,7 +40,7 @@ struct RegisterView: View {
             
             Group{
                 TextField("Email", text: $email)
-                    .inputFieldStyle(icon: "envelope.open.fill")
+                    .inputFieldStyle(icon: Image(systemName: "envelope.open.fill"))
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
@@ -48,16 +51,18 @@ struct RegisterView: View {
                     .onPreferenceChange(CirclePreferenceKey.self){ value in
                         emailYPos = value
                         circlePosition = value
+                        generator.selectionChanged()
                     }
                 
                 SecureField("Password", text: $password)
-                    .inputFieldStyle(icon: "key.fill")
+                    .inputFieldStyle(icon: Image(systemName: "key.fill"))
                     .textContentType(.password)
                     .focused($focusField, equals: .password)
                     .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
                     .overlay(geometry)
                     .onPreferenceChange(CirclePreferenceKey.self){ value in
                         passwordYPos = value
+                        generator.selectionChanged()
                     }
                 
                 Button {} label: {
