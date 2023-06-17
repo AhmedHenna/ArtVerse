@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2917D9292A393C55003A668C /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2917D9282A393C55003A668C /* AvatarView.swift */; };
+		293A8E1C2A3E29A3000484D9 /* GradientText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293A8E1B2A3E29A3000484D9 /* GradientText.swift */; };
 		29429B922A2A96E90048046A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B912A2A96E90048046A /* HomeView.swift */; };
 		29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B982A2A9A7E0048046A /* FeaturedItem.swift */; };
 		29429B9B2A2A9C400048046A /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B9A2A2A9C400048046A /* AppBar.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		2917D9282A393C55003A668C /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		293A8E1B2A3E29A3000484D9 /* GradientText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientText.swift; sourceTree = "<group>"; };
 		29429B912A2A96E90048046A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		29429B982A2A9A7E0048046A /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		29429B9A2A2A9C400048046A /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				2972B03C2A2F8E1A00A9D968 /* AnimatedFontStyle.swift */,
 				29886A042A37A5ED0083F2BA /* CustomButtonStyle.swift */,
 				29886A062A37AD0B0083F2BA /* InputFieldStyle.swift */,
+				293A8E1B2A3E29A3000484D9 /* GradientText.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				29429B922A2A96E90048046A /* HomeView.swift in Sources */,
 				29D31DD92A353CD1004F5B7A /* SearchView.swift in Sources */,
 				29E19C7D2A3A01C9007F6AA7 /* SectionView.swift in Sources */,
+				293A8E1C2A3E29A3000484D9 /* GradientText.swift in Sources */,
 				29EDC36C2A3A48C80009A2E7 /* SmallCourseItem.swift in Sources */,
 				29EDC3662A3A46400009A2E7 /* PlayButton.swift in Sources */,
 				29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */,

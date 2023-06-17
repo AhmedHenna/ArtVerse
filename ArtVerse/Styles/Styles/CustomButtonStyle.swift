@@ -45,7 +45,7 @@ struct CustomButtonStyle : ButtonStyle{
             .padding(.horizontal, 10 + extraPadding)
             .padding(.vertical, 5 + extraPadding)
             .background(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(.linearGradient(colors: [Color(.systemBackground), Color(.systemBackground).opacity(0.5)], startPoint: .top, endPoint: .bottom)))
+                .fill(.linearGradient(colors: [Color(.systemBackground), Color(.systemBackground).opacity(0.2)], startPoint: .top, endPoint: .bottom)))
             .blendMode(.softLight)
             .background(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .fill(AngularGradient(colors: [.pink, .purple, .blue, .pink], center: .center,

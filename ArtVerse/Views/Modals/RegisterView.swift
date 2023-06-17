@@ -78,10 +78,10 @@ struct RegisterView: View {
                     Button {
                         model.selectedModal = .logIn
                     } label: {
-                        Text("**Log in**")
+                        GradientText(text: "Log in")
                     }
                 }
-                .font(.footnote)
+                .font(.footnote.bold())
                 .foregroundColor(.secondary)
                 .accentColor(.secondary)
             }
