@@ -24,7 +24,8 @@ struct RegisterView: View {
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
     private let generator = UISelectionFeedbackGenerator()
-
+    private var viewModel = AuthViewModel()
+    
     
     
     var body: some View {
@@ -53,46 +54,55 @@ struct RegisterView: View {
                         circlePosition = value
                         generator.selectionChanged()
                     }
-                
-                SecureField("Password", text: $password)
-                    .inputFieldStyle(icon: Image(systemName: "key.fill"))
-                    .textContentType(.password)
-                    .focused($focusField, equals: .password)
-                    .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
-                    .overlay(geometry)
-                    .onPreferenceChange(CirclePreferenceKey.self){ value in
-                        passwordYPos = value
-                        generator.selectionChanged()
+                    .onChange(of: email) { value in
+                        viewModel.email = value
                     }
-                
-                Button {} label: {
-                    Text("Register account")
-                        .frame(maxWidth: .infinity)
+            
+            SecureField("Password", text: $password)
+                .inputFieldStyle(icon: Image(systemName: "key.fill"))
+                .textContentType(.password)
+                .focused($focusField, equals: .password)
+                .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                .overlay(geometry)
+                .onPreferenceChange(CirclePreferenceKey.self){ value in
+                    passwordYPos = value
+                    generator.selectionChanged()
                 }
-                .font(.headline)
-                .blendMode(.overlay)
-                .buttonStyle(.customButton)
-                .tint(.accentColor)
-                .controlSize(.large)
-                .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-                
-                Divider()
-                
-                HStack {
-                    Text("Already have an account?")
-                    Button {
-                        model.selectedModal = .logIn
-                    } label: {
-                        GradientText(text: "Log in")
-                    }
+                .onChange(of: password) { value in
+                    viewModel.password = value
                 }
-                .font(.footnote.bold())
-                .foregroundColor(.secondary)
-                .accentColor(.secondary)
+            
+            Button {
+                viewModel.register()
+                generator.selectionChanged()
+            } label: {
+                Text("Register account")
+                    .frame(maxWidth: .infinity)
             }
-            .opacity(appear[2] ? 1 : 0)
-            .offset(y: appear[2] ? 0 : 20)
+            .font(.headline)
+            .blendMode(.overlay)
+            .buttonStyle(.customButton)
+            .tint(.accentColor)
+            .controlSize(.large)
+            .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
+            
+            Divider()
+            
+            HStack {
+                Text("Already have an account?")
+                Button {
+                    model.selectedModal = .logIn
+                } label: {
+                    GradientText(text: "Log in")
+                }
+            }
+            .font(.footnote.bold())
+            .foregroundColor(.secondary)
+            .accentColor(.secondary)
         }
+        .opacity(appear[2] ? 1 : 0)
+        .offset(y: appear[2] ? 0 : 20)
+    }
         .padding(20)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .background(
@@ -126,15 +136,15 @@ struct RegisterView: View {
                 appear[2] = true
             }
         }
+}
+
+var geometry: some View{
+    GeometryReader{ proxy in
+        Color.clear.preference(key: CirclePreferenceKey.self,
+                               value: proxy.frame(in: .named("container")).minY)
     }
-    
-    var geometry: some View{
-        GeometryReader{ proxy in
-            Color.clear.preference(key: CirclePreferenceKey.self,
-                                   value: proxy.frame(in: .named("container")).minY)
-        }
-    }
-    
+}
+
 }
 
 struct RegisterView_Previews: PreviewProvider {
