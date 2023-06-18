@@ -65,10 +65,10 @@ struct LogInView: View {
                     }
                 
                 Button {
-                    viewModel.register()
+                    viewModel.login()
                     generator.selectionChanged()
                 } label: {
-                    Text("Register account")
+                    Text("Log in")
                         .frame(maxWidth: .infinity)
                 }
                 .font(.headline)

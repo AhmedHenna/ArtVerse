@@ -12,13 +12,17 @@ struct RegisterView: View {
     enum Field: Hashable{
         case email
         case password
+        case firstName
+        case lastName
     }
     
     @StateObject var viewModel = AuthViewModel()
     @State var circlePosition: CGFloat = 120
+    @State var firstNameYPos: CGFloat = 0
+    @State var lastNameYPos: CGFloat = 0
     @State var emailYPos: CGFloat = 0
     @State var passwordYPos: CGFloat = 0
-    @State var circleColor: Color = .blue
+    @State var circleColor: Color = .purple
     @State var appear = [false, false, false]
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
@@ -38,6 +42,30 @@ struct RegisterView: View {
                 .offset(y: appear[1] ? 0 : 20)
             
             Group{
+                TextField("First Name", text: $viewModel.firstName)
+                    .inputFieldStyle(icon: Image(systemName: "person.fill"))
+                    .autocorrectionDisabled(true)
+                    .focused($focusField, equals: .firstName)
+                    .shadow(color: focusField == .firstName ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self){ value in
+                        firstNameYPos = value
+                        circlePosition = value
+                        generator.selectionChanged()
+                    }
+                
+                TextField("Last Name", text: $viewModel.lastName)
+                    .inputFieldStyle(icon: Image(systemName: "person.fill"))
+                    .autocorrectionDisabled(true)
+                    .focused($focusField, equals: .lastName)
+                    .shadow(color: focusField == .lastName ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self){ value in
+                        lastNameYPos = value
+                        generator.selectionChanged()
+                    }
+                
+                
                 TextField("Email", text: $viewModel.email)
                     .inputFieldStyle(icon: Image(systemName: "envelope.open.fill"))
                     .textContentType(.emailAddress)
@@ -49,7 +77,6 @@ struct RegisterView: View {
                     .overlay(geometry)
                     .onPreferenceChange(CirclePreferenceKey.self){ value in
                         emailYPos = value
-                        circlePosition = value
                         generator.selectionChanged()
                     }
                 
@@ -111,10 +138,16 @@ struct RegisterView: View {
             withAnimation{
                 if newValue == .email{
                     circlePosition = emailYPos
-                    circleColor = .blue
-                }else{
+                    circleColor = .purple
+                }else if newValue == .password{
                     circlePosition = passwordYPos
-                    circleColor = .red
+                    circleColor = .pink
+                }else if newValue == .lastName{
+                    circlePosition = lastNameYPos
+                    circleColor = .pink
+                }else if newValue == .firstName{
+                    circlePosition = firstNameYPos
+                    circleColor = .purple
                 }
             }
         })
