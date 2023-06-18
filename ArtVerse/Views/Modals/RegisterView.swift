@@ -14,8 +14,7 @@ struct RegisterView: View {
         case password
     }
     
-    @State var email = ""
-    @State var password = ""
+    @StateObject var viewModel = AuthViewModel()
     @State var circlePosition: CGFloat = 120
     @State var emailYPos: CGFloat = 0
     @State var passwordYPos: CGFloat = 0
@@ -24,7 +23,6 @@ struct RegisterView: View {
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
     private let generator = UISelectionFeedbackGenerator()
-    private var viewModel = AuthViewModel()
     
     
     
@@ -40,7 +38,7 @@ struct RegisterView: View {
                 .offset(y: appear[1] ? 0 : 20)
             
             Group{
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .inputFieldStyle(icon: Image(systemName: "envelope.open.fill"))
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -54,55 +52,50 @@ struct RegisterView: View {
                         circlePosition = value
                         generator.selectionChanged()
                     }
-                    .onChange(of: email) { value in
-                        viewModel.email = value
+                
+                SecureField("Password", text: $viewModel.password)
+                    .inputFieldStyle(icon: Image(systemName: "key.fill"))
+                    .textContentType(.password)
+                    .focused($focusField, equals: .password)
+                    .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self){ value in
+                        passwordYPos = value
+                        generator.selectionChanged()
                     }
-            
-            SecureField("Password", text: $password)
-                .inputFieldStyle(icon: Image(systemName: "key.fill"))
-                .textContentType(.password)
-                .focused($focusField, equals: .password)
-                .shadow(color: focusField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
-                .overlay(geometry)
-                .onPreferenceChange(CirclePreferenceKey.self){ value in
-                    passwordYPos = value
-                    generator.selectionChanged()
-                }
-                .onChange(of: password) { value in
-                    viewModel.password = value
-                }
-            
-            Button {
-                viewModel.register()
-                generator.selectionChanged()
-            } label: {
-                Text("Register account")
-                    .frame(maxWidth: .infinity)
-            }
-            .font(.headline)
-            .blendMode(.overlay)
-            .buttonStyle(.customButton)
-            .tint(.accentColor)
-            .controlSize(.large)
-            .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-            
-            Divider()
-            
-            HStack {
-                Text("Already have an account?")
+                
                 Button {
-                    model.selectedModal = .logIn
+                    viewModel.register()
+                    generator.selectionChanged()
                 } label: {
-                    GradientText(text: "Log in")
+                    Text("Register account")
+                        .frame(maxWidth: .infinity)
                 }
+                .font(.headline)
+                .blendMode(.overlay)
+                .buttonStyle(CustomButtonStyle(fieldsNotEmpty: viewModel.fieldsNotEmpty))
+                .tint(.accentColor)
+                .controlSize(.large)
+                .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
+                .disabled(!viewModel.fieldsNotEmpty)
+                
+                Divider()
+                
+                HStack {
+                    Text("Already have an account?")
+                    Button {
+                        model.selectedModal = .logIn
+                    } label: {
+                        GradientText(text: "Log in")
+                    }
+                }
+                .font(.footnote.bold())
+                .foregroundColor(.secondary)
+                .accentColor(.secondary)
             }
-            .font(.footnote.bold())
-            .foregroundColor(.secondary)
-            .accentColor(.secondary)
+            .opacity(appear[2] ? 1 : 0)
+            .offset(y: appear[2] ? 0 : 20)
         }
-        .opacity(appear[2] ? 1 : 0)
-        .offset(y: appear[2] ? 0 : 20)
-    }
         .padding(20)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .background(
@@ -136,15 +129,15 @@ struct RegisterView: View {
                 appear[2] = true
             }
         }
-}
-
-var geometry: some View{
-    GeometryReader{ proxy in
-        Color.clear.preference(key: CirclePreferenceKey.self,
-                               value: proxy.frame(in: .named("container")).minY)
     }
-}
-
+    
+    var geometry: some View{
+        GeometryReader{ proxy in
+            Color.clear.preference(key: CirclePreferenceKey.self,
+                                   value: proxy.frame(in: .named("container")).minY)
+        }
+    }
+    
 }
 
 struct RegisterView_Previews: PreviewProvider {

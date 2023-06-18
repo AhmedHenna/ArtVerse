@@ -14,8 +14,7 @@ struct LogInView: View {
         case password
     }
     
-    @State var email = ""
-    @State var password = ""
+    @StateObject var viewModel = AuthViewModel()
     @State var circlePosition: CGFloat = 120
     @State var emailYPos: CGFloat = 0
     @State var passwordYPos: CGFloat = 0
@@ -39,7 +38,7 @@ struct LogInView: View {
                 .offset(y: appear[1] ? 0 : 20)
             
             Group{
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .inputFieldStyle(icon: Image(systemName: "envelope.open.fill"))
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -54,7 +53,7 @@ struct LogInView: View {
                         generator.selectionChanged()
                     }
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $viewModel.password)
                     .inputFieldStyle(icon: Image(systemName: "key.fill"))
                     .textContentType(.password)
                     .focused($focusField, equals: .password)
@@ -66,18 +65,19 @@ struct LogInView: View {
                     }
                 
                 Button {
-                    isLoggedIn = true
+                    viewModel.register()
+                    generator.selectionChanged()
                 } label: {
-                    Text("Log in")
+                    Text("Register account")
                         .frame(maxWidth: .infinity)
                 }
                 .font(.headline)
                 .blendMode(.overlay)
-                .buttonStyle(.customButton)
+                .buttonStyle(CustomButtonStyle(fieldsNotEmpty: viewModel.fieldsNotEmpty))
                 .tint(.accentColor)
                 .controlSize(.large)
                 .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-                
+                .disabled(!viewModel.fieldsNotEmpty)
                 
                 Divider()
                 
