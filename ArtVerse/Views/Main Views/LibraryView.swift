@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LibraryView: View {
+    @StateObject private var mainViewModel = MainViewModel()
+
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -49,7 +51,7 @@ struct LibraryView: View {
     var coursesViewdPreviously: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(courses) { course in
+                ForEach(mainViewModel.courses) { course in
                     SmallCourseItem(course: course)
                 }
             }

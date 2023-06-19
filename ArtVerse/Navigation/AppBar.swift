@@ -14,7 +14,6 @@ struct AppBar: View {
     @State var showAccount = false
     @AppStorage("showModal") var showModal = false
     @ObservedObject var viewModel = AuthViewModel()
-
     
     var body: some View {
         ZStack {

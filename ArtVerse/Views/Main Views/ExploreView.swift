@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @StateObject private var mainViewModel = MainViewModel()
+
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -37,7 +39,7 @@ struct ExploreView: View {
     var coursesSection: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(courses) { course in
+                ForEach(mainViewModel.courses) { course in
                     SmallCourseItem(course: course)
                 }
             }
@@ -47,13 +49,17 @@ struct ExploreView: View {
     }
     
     var handbooksSection: some View {
-        HStack(alignment: .top, spacing: 16) {
-            ForEach(handbooks) { handbook in
-                HandbookItem(handbook: handbook)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(alignment: .top, spacing: 16) {
+                ForEach(handbooks) { handbook in
+                    HandbookItem(handbook: handbook)
+                }
             }
+            .frame(height: 330)
+            .padding(.horizontal, 20)
         }
-        .padding(.horizontal, 20)
     }
+
     
     var topicsSection: some View {
         VStack {

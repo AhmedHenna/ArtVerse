@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct CourseItem: View {
-    var course: Course = courses[0]
+    var course: Course?
+    @StateObject private var mainViewModel = MainViewModel()
     var namespace: Namespace.ID
     @Binding var courseCardPressed: Bool
+    
+    var defaultCourse: Course {
+        mainViewModel.courses[0]
+    }
+    
+    var selectedCourse: Course {
+        course ?? defaultCourse
+    }
     
     var body: some View {
         VStack {
             Spacer()
             VStack (alignment: .leading, spacing: 12){
-                Text(course.title)
+                Text(selectedCourse.title)
                     .font(.largeTitle.weight(.bold))
-                    .matchedGeometryEffect(id: "title\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "title\(selectedCourse.id)", in: namespace)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(course.subtitle.uppercased())
+                Text(selectedCourse.subtitle.uppercased())
                     .font(.footnote.weight(.semibold))
-                    .matchedGeometryEffect(id: "subtitle\(course.id)", in: namespace)
-                Text(course.description)
+                    .matchedGeometryEffect(id: "subtitle\(selectedCourse.id)", in: namespace)
+                Text(selectedCourse.description)
                     .lineLimit(2)
                     .font(.footnote)
-                    .matchedGeometryEffect(id: "description\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "description\(selectedCourse.id)", in: namespace)
             }
             .padding(20)
             .background(
@@ -35,25 +44,25 @@ struct CourseItem: View {
                     .fill(.ultraThinMaterial)
                     .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     .blur(radius: 30)
-                    .matchedGeometryEffect(id: "blur\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "blur\(selectedCourse.id)", in: namespace)
             )
             
         }
         .foregroundStyle(.white)
         .background(
-            Image(course.image)
+            Image(selectedCourse.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(20)
-                .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
+                .matchedGeometryEffect(id: "image\(selectedCourse.id)", in: namespace)
         )
         .background(
-            Image(course.bg)
+            Image(selectedCourse.bg)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
+                .matchedGeometryEffect(id: "bg\(selectedCourse.id)", in: namespace)
         )
-        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).matchedGeometryEffect(id: "mask\(course.id)", in: namespace))
+        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).matchedGeometryEffect(id: "mask\(selectedCourse.id)", in: namespace))
         .frame(height: 300)
     }
 }

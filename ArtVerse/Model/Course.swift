@@ -17,16 +17,3 @@ struct Course: Identifiable{
     var bg: String
     var height: CGFloat
 }
-
-var coursesFeatured = [
-    Course(title: "Blender Beginner Tutorial", subtitle: "17 Sections - 7 Hours", description: "Blender tutorial series showing you how to use the most common features, like modelling, lighting, materials, geometry nodes and rendering - whilst making a donut.", image: "Illustration 5", logo: "Blender", bg: "Background 4", height: 250),
-    Course(title: "Photoshop for Beginners", subtitle: "5 Sections - 4 Hours", description: "If you want to be a pro digital artist, you may want to learn photoshop. In this hand holdy real time tutorial, I will teach you the most essential things you will need to get started with Photoshop.", image: "Illustration 1", logo: "Photoshop", bg: "Background 3", height: 230),
-    Course(title: "Procreate Beginners Series", subtitle: "4 Sections - 1 Hours", description: "The Beginners Series is a four-part guide to Procreate, the award-winning digital art app for iPad. Ideal for people new to Procreate, and with plenty of extra tips for advanced artists.", image: "Illustration 12", logo: "Procreate", bg: "Background 1", height: 210)
-]
-
-var courses = [
-    Course(title: "Blender Beginner Tutorial", subtitle: "17 Sections - 7 Hours", description: "Blender tutorial series showing you how to use the most common features, like modelling, lighting, materials, geometry nodes and rendering - whilst making a donut.", image: "Illustration 5", logo: "Blender", bg: "Background 4", height: 250),
-    Course(title: "Photoshop for Beginners", subtitle: "5 Sections - 4 Hours", description: "If you want to be a pro digital artist, you may want to learn photoshop. In this hand holdy real time tutorial, I will teach you the most essential things you will need to get started with Photoshop.", image: "Illustration 1", logo: "Photoshop", bg: "Background 3", height: 230),
-    Course(title: "Procreate Beginners Series", subtitle: "4 Sections - 1 Hours", description: "The Beginners Series is a four-part guide to Procreate, the award-winning digital art app for iPad. Ideal for people new to Procreate, and with plenty of extra tips for advanced artists.", image: "Illustration 12", logo: "Procreate", bg: "Background 1", height: 210)
-]
-

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2917D9292A393C55003A668C /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2917D9282A393C55003A668C /* AvatarView.swift */; };
+		2921C0752A40E3FC00809A63 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C0742A40E3FC00809A63 /* HomeViewModel.swift */; };
+		2921C0772A40E51E00809A63 /* ColorFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C0762A40E51E00809A63 /* ColorFromString.swift */; };
+		2921C07C2A40F33000809A63 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C07B2A40F33000809A63 /* FirestoreManager.swift */; };
+		2921C0812A40F9C300809A63 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C0802A40F9C300809A63 /* MainViewModel.swift */; };
 		293A8E1C2A3E29A3000484D9 /* GradientText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293A8E1B2A3E29A3000484D9 /* GradientText.swift */; };
 		29429B922A2A96E90048046A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B912A2A96E90048046A /* HomeView.swift */; };
 		29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B982A2A9A7E0048046A /* FeaturedItem.swift */; };
@@ -61,6 +65,10 @@
 
 /* Begin PBXFileReference section */
 		2917D9282A393C55003A668C /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		2921C0742A40E3FC00809A63 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		2921C0762A40E51E00809A63 /* ColorFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromString.swift; sourceTree = "<group>"; };
+		2921C07B2A40F33000809A63 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		2921C0802A40F9C300809A63 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		293A8E1B2A3E29A3000484D9 /* GradientText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientText.swift; sourceTree = "<group>"; };
 		29429B912A2A96E90048046A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		29429B982A2A9A7E0048046A /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
@@ -124,6 +132,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2921C0782A40E52800809A63 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2921C0762A40E51E00809A63 /* ColorFromString.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		2921C07D2A40F33A00809A63 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2921C07B2A40F33000809A63 /* FirestoreManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		29429B932A2A990B0048046A /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +218,9 @@
 		29AA11C82A3F146000A9FDBF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2921C0742A40E3FC00809A63 /* HomeViewModel.swift */,
 				29AA11C92A3F147900A9FDBF /* AuthViewModel.swift */,
+				2921C0802A40F9C300809A63 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -225,6 +251,8 @@
 				29429B932A2A990B0048046A /* Navigation */,
 				29429B952A2A995A0048046A /* Components */,
 				29429B972A2A998A0048046A /* Styles */,
+				2921C0782A40E52800809A63 /* Helper */,
+				2921C07D2A40F33A00809A63 /* Services */,
 				29B5DF5F2A25F771005501B7 /* Preview Content */,
 				29E551FD2A3F829B00624057 /* GoogleService-Info.plist */,
 				29B5DF602A25F771005501B7 /* Preview Assets.xcassets */,
@@ -424,6 +452,7 @@
 				2972B03D2A2F8E1A00A9D968 /* AnimatedFontStyle.swift in Sources */,
 				29429B9B2A2A9C400048046A /* AppBar.swift in Sources */,
 				29780E4B2A329BB300750B55 /* Model.swift in Sources */,
+				2921C07C2A40F33000809A63 /* FirestoreManager.swift in Sources */,
 				29EDC3862A3A61F50009A2E7 /* TitleModifier.swift in Sources */,
 				29D31DDB2A35413A004F5B7A /* Suggestions.swift in Sources */,
 				29EDC37E2A3A4E780009A2E7 /* NotificationsView.swift in Sources */,
@@ -436,7 +465,9 @@
 				29886A092A37BFAF0083F2BA /* ModalView.swift in Sources */,
 				29AA11CC2A3F177300A9FDBF /* User.swift in Sources */,
 				2985AE5D2A311B2200EF2111 /* CourseItem.swift in Sources */,
+				2921C0752A40E3FC00809A63 /* HomeViewModel.swift in Sources */,
 				29886A0B2A37C0120083F2BA /* LogInView.swift in Sources */,
+				2921C0772A40E51E00809A63 /* ColorFromString.swift in Sources */,
 				29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */,
 				29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */,
 				29EDC3702A3A4B700009A2E7 /* HandbookItem.swift in Sources */,
@@ -446,6 +477,7 @@
 				2972B03B2A2F897C00A9D968 /* PreferenceKeys.swift in Sources */,
 				29E19C772A3A009F007F6AA7 /* CourseSection.swift in Sources */,
 				29DF08BE2A2913F20053DB23 /* TabBar.swift in Sources */,
+				2921C0812A40F9C300809A63 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

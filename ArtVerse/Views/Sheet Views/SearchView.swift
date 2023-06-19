@@ -13,14 +13,16 @@ struct SearchView: View {
     @State var selectedIndex = 0
     @Namespace var namespace
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var mainViewModel = MainViewModel()
+
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack{
                     searchResults
-                    Text(courses[selectedIndex].title).foregroundColor(.clear)
-                }
+                    Text(mainViewModel.courses.indices.contains(selectedIndex) ? mainViewModel.courses[selectedIndex].title : "")
+                        .foregroundColor(.clear)                }
                 .padding(20)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .strokeStyle(cornerRadius: 30)
@@ -44,14 +46,14 @@ struct SearchView: View {
                     .navigationBarItems(trailing: Button {presentationMode.wrappedValue.dismiss()}
                                         label: {Text("Done").bold()})
                     .sheet(isPresented: $showCourseView) {
-                        CourseView(namespace: namespace, course: courses[selectedIndex] ,courseCardPressed: $showCourseView)
+                        CourseView(namespace: namespace, course: mainViewModel.courses[selectedIndex] ,courseCardPressed: $showCourseView)
                     }
         }
     }
     
     var searchResults: some View{
-        ForEach(courses.indices, id: \.self) { index in
-            let item = courses[index]
+        ForEach(mainViewModel.courses.indices, id: \.self) { index in
+            let item = mainViewModel.courses[index]
             
             if item.title.contains(text) || text == ""  {
                 if index != 0 {Divider()}

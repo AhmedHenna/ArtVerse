@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct FeaturedItem: View {
-    var course: Course = courses[1]
+    @StateObject private var mainViewModel = MainViewModel()
     @Environment(\.sizeCategory) var sizeCategory
+    
+    var course: Course?
+    
+    var defaultCourse: Course {
+        mainViewModel.courses[0]
+    }
+    
+    var selectedCourse: Course {
+        course ?? defaultCourse
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             Spacer()
-            Image(course.logo)
+            Image(selectedCourse.logo)
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 26.0, height: 26.0)
@@ -22,16 +32,16 @@ struct FeaturedItem: View {
                 .padding(9)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .strokeStyle(cornerRadius: 16)
-            Text(course.title)
+            Text(selectedCourse.title)
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .dynamicTypeSize(.large)
-            Text(course.subtitle.uppercased())
+            Text(selectedCourse.subtitle.uppercased())
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
-            Text(course.description)
+            Text(selectedCourse.description)
                 .font(.footnote)
                 .lineLimit(sizeCategory > .large ? 1 : 2)
                 .frame(maxWidth: .infinity, alignment: .leading)

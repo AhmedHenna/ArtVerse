@@ -16,6 +16,9 @@ struct HomeView: View {
     @State var showCourse = false
     @State var selectedIndex = 0
     @EnvironmentObject var model: Model
+    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var mainViewModel = MainViewModel()
+
     
     var body: some View {
         ZStack {
@@ -78,7 +81,7 @@ struct HomeView: View {
     
     var coursesFeaturedSwiper: some View{
         TabView {
-            ForEach(Array(coursesFeatured.enumerated()), id: \.offset) { index, course in
+            ForEach(Array(homeViewModel.coursesFeatured.enumerated()), id: \.offset) { index, course in
                 GeometryReader { proxy in
                     let minX = proxy.frame(in: .global).minX
                     
@@ -108,12 +111,12 @@ struct HomeView: View {
         .frame(height: 430)
         .background(Image("Blob").offset(x:250, y:-100))
         .sheet(isPresented: $showCourse) {
-            CourseView(namespace: namespace, course: coursesFeatured[selectedIndex], courseCardPressed: $showCourse)
+            CourseView(namespace: namespace, course: homeViewModel.coursesFeatured[selectedIndex], courseCardPressed: $showCourse)
         }
     }
     
     var courseCards: some View{
-        ForEach(courses){ course in
+        ForEach(mainViewModel.courses){ course in
             CourseItem(course: course, namespace: namespace, courseCardPressed: $courseCardPressed)
                 .onTapGesture {
                     withAnimation(.openCard){
@@ -127,7 +130,7 @@ struct HomeView: View {
     }
     
     var courseCardDetails: some View{
-        ForEach(courses) { course in
+        ForEach(mainViewModel.courses) { course in
             if course.id == selectedID{
                 CourseView(namespace: namespace, course: course, courseCardPressed: $courseCardPressed)
                     .zIndex(1)
@@ -144,7 +147,7 @@ struct HomeView: View {
     /*this just acts as the courses card, since once one of them is clicked they are removed
     so this will help stop the autoscrolling to the top*/
     var cardFillerToStopAutoScrollingtoTop: some View{
-        ForEach(courses) { course in
+        ForEach(mainViewModel.courses) { course in
             Rectangle()
                 .fill(.white)
                 .frame(height: 300)

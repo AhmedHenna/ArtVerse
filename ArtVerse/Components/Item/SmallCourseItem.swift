@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct SmallCourseItem: View {
-    var course: Course = courses[0]
+    @StateObject private var mainViewModel = MainViewModel()
+    var course: Course?
+    
+    var defaultCourse: Course {
+        mainViewModel.courses[1]
+    }
+    
+    var selectedCourse: Course {
+        course ?? defaultCourse
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(.black.opacity(0.1))
                 .overlay(
-                    Image(course.image)
+                    Image(selectedCourse.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 150, height: 105)
                 )
-            Text(course.subtitle)
+            Text(selectedCourse.subtitle)
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
-            Text(course.title)
+            Text(selectedCourse.title)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }

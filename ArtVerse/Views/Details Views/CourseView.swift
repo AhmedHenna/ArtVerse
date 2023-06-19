@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CourseView: View {
     var namespace : Namespace.ID
-    var course : Course = courses[0]
+    var course: Course?
     @Binding var courseCardPressed : Bool
     @State var appear  = [false, false, false]
     @State var viewState: CGSize = .zero
@@ -17,6 +17,15 @@ struct CourseView: View {
     @State var showSection = false
     @State var selectedIndex = 0
     @EnvironmentObject var model: Model
+    @StateObject private var mainViewModel = MainViewModel()
+
+    var defaultCourse: Course {
+        mainViewModel.courses[1]
+    }
+    
+    var selectedCourse: Course {
+        course ?? defaultCourse
+    }
     
     var body: some View {
         ZStack {
@@ -61,26 +70,26 @@ struct CourseView: View {
             .frame(height: scrollY > 0 ? 500 + scrollY : 500)
             .foregroundStyle(.black)
             .background(
-                Image(course.image)
+                Image(selectedCourse.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(20)
                     .frame(maxWidth: 900)
-                    .matchedGeometryEffect(id: "image\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "image\(selectedCourse.id)", in: namespace)
                     .offset(y: scrollY > 0 ? scrollY * -0.8 : 0)
             )
             .background(
-                Image(course.bg)
+                Image(selectedCourse.bg)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .matchedGeometryEffect(id: "bg\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "bg\(selectedCourse.id)", in: namespace)
                     .offset(y: scrollY > 0 ? -scrollY : 0)
                     .scaleEffect(scrollY > 0 ? scrollY / 1000 + 1 : 1)
                     .blur(radius: scrollY / 10)
             )
             .mask(
                 RoundedRectangle(cornerRadius: appear[0] ? 0 : 30, style: .continuous)
-                    .matchedGeometryEffect(id: "mask\(course.id)", in: namespace)
+                    .matchedGeometryEffect(id: "mask\(selectedCourse.id)", in: namespace)
                     .offset(y: scrollY > 0 ? -scrollY : 0)
             )
             .overlay(
@@ -112,17 +121,17 @@ struct CourseView: View {
     
     var foregroundDetailBox: some View{
         VStack (alignment: .leading, spacing: 12){
-            Text(course.title)
+            Text(selectedCourse.title)
                 .font(.largeTitle.weight(.bold))
-                .matchedGeometryEffect(id: "title\(course.id)", in: namespace)
+                .matchedGeometryEffect(id: "title\(selectedCourse.id)", in: namespace)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(course.subtitle.uppercased())
+            Text(selectedCourse.subtitle.uppercased())
                 .font(.footnote.weight(.semibold))
-                .matchedGeometryEffect(id: "subtitle\(course.id)", in: namespace)
-            Text(course.description)
+                .matchedGeometryEffect(id: "subtitle\(selectedCourse.id)", in: namespace)
+            Text(selectedCourse.description)
                 .lineLimit(2)
                 .font(.footnote)
-                .matchedGeometryEffect(id: "description\(course.id)", in: namespace)
+                .matchedGeometryEffect(id: "description\(selectedCourse.id)", in: namespace)
             Divider()
                 .opacity(appear[0] ? 1 : 0)
             HStack{
@@ -143,7 +152,7 @@ struct CourseView: View {
             Rectangle()
                 .fill(.ultraThinMaterial)
                 .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .matchedGeometryEffect(id: "blur\(course.id)", in: namespace)
+                .matchedGeometryEffect(id: "blur\(selectedCourse.id)", in: namespace)
         )
         .offset(y: 250)
         .padding(20)
