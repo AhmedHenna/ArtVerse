@@ -13,14 +13,11 @@ struct ModalView: View {
     @State var viewState: CGSize = .zero
     @State var isDismiss = false
     @State var appear = [false, false, false]
-    @AppStorage("isLoggedIn") var isLoggedIn = false
+    @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
         ZStack {
             Color.clear.background(.regularMaterial)
-                .onTapGesture {
-                    dismissModal()
-                }
                 .ignoresSafeArea()
             
             Group{
@@ -76,7 +73,7 @@ struct ModalView: View {
                 appear[2] = true
             }
         }
-        .onChange(of: isLoggedIn) { newValue in
+        .onChange(of: viewModel.isLoggedIn) { newValue in
             if newValue {
                 dismissModal()
             }
@@ -99,12 +96,15 @@ struct ModalView: View {
             }
     }
     
-    func dismissModal(){
-        withAnimation{
+    func dismissModal() {
+        withAnimation {
             isDismiss = true
         }
-        withAnimation(.linear.delay(0.3)){
-            showModal = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            withAnimation(.linear) {
+                showModal = false
+            }
         }
     }
 }

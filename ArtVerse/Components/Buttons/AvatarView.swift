@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AvatarView: View {
-    @AppStorage("isLoggedIn") var isLoggedIn = false
-    
+    @ObservedObject var viewModel = AuthViewModel()
+
     var body: some View {
         Group{
-            if isLoggedIn{
+            if viewModel.isLoggedIn{
                 AsyncImage(url: URL(string: "https://t.ly/d-Z6"),
                            transaction: Transaction(animation: .easeOut)){ phase in
                     switch phase{
@@ -41,6 +41,6 @@ struct AvatarView: View {
 
 struct AvatarView_Previews: PreviewProvider {
     static var previews: some View {
-        AvatarView(isLoggedIn: true)
+        AvatarView()
     }
 }

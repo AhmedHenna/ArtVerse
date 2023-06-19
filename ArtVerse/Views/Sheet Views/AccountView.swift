@@ -11,8 +11,8 @@ struct AccountView: View {
     @State var isDeleted = false
     @State var isPinned = false
     @Environment(\.dismiss) var dismiss
-    @AppStorage("isLoggedIn") var isLoggedIn = false
-    
+    @ObservedObject var viewModel = AuthViewModel()
+
     var body: some View {
         NavigationView {
             List{
@@ -21,7 +21,7 @@ struct AccountView: View {
                 links
                 
                 Button {
-                    isLoggedIn = false
+                    viewModel.isLoggedIn = false
                     dismiss()
                 } label: {
                     Text("Log out")

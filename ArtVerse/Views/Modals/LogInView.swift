@@ -14,7 +14,7 @@ struct LogInView: View {
         case password
     }
     
-    @StateObject var viewModel = AuthViewModel()
+    @ObservedObject var viewModel = AuthViewModel()
     @State var circlePosition: CGFloat = 120
     @State var emailYPos: CGFloat = 0
     @State var passwordYPos: CGFloat = 0
@@ -22,7 +22,6 @@ struct LogInView: View {
     @State var appear = [false, false, false]
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
-    @AppStorage("isLoggedIn") var isLoggedIn = false
     private let generator = UISelectionFeedbackGenerator()
     
     

@@ -13,7 +13,8 @@ struct AppBar: View {
     @State var showSearch = false
     @State var showAccount = false
     @AppStorage("showModal") var showModal = false
-    @AppStorage("isLoggedIn") var isLoggedIn = false
+    @ObservedObject var viewModel = AuthViewModel()
+
     
     var body: some View {
         ZStack {
@@ -44,7 +45,7 @@ struct AppBar: View {
                 }
                 
                 Button {
-                    if isLoggedIn{
+                    if viewModel.isLoggedIn{
                         showAccount = true
                     }else{
                         withAnimation{
