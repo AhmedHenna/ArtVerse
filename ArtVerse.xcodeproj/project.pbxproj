@@ -25,7 +25,9 @@
 		29886A092A37BFAF0083F2BA /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29886A082A37BFAF0083F2BA /* ModalView.swift */; };
 		29886A0B2A37C0120083F2BA /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29886A0A2A37C0120083F2BA /* LogInView.swift */; };
 		2998AE242A28F1A400BAC2D9 /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998AE232A28F1A400BAC2D9 /* BlobView.swift */; };
-		29AA11C52A3F118300A9FDBF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 29AA11C42A3F118300A9FDBF /* FirebaseAuth */; };
+		2999B3362A407DE100B94939 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2999B3352A407DE100B94939 /* FirebaseAnalytics */; };
+		2999B33A2A407DE100B94939 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2999B3392A407DE100B94939 /* FirebaseAuth */; };
+		2999B33C2A407DE100B94939 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2999B33B2A407DE100B94939 /* FirebaseFirestore */; };
 		29AA11CA2A3F147900A9FDBF /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA11C92A3F147900A9FDBF /* AuthViewModel.swift */; };
 		29AA11CC2A3F177300A9FDBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA11CB2A3F177300A9FDBF /* User.swift */; };
 		29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5DF592A25F770005501B7 /* ArtVerseApp.swift */; };
@@ -113,7 +115,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29AA11C52A3F118300A9FDBF /* FirebaseAuth in Frameworks */,
+				2999B33C2A407DE100B94939 /* FirebaseFirestore in Frameworks */,
+				2999B33A2A407DE100B94939 /* FirebaseAuth in Frameworks */,
+				2999B3362A407DE100B94939 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +339,9 @@
 			);
 			name = ArtVerse;
 			packageProductDependencies = (
-				29AA11C42A3F118300A9FDBF /* FirebaseAuth */,
+				2999B3352A407DE100B94939 /* FirebaseAnalytics */,
+				2999B3392A407DE100B94939 /* FirebaseAuth */,
+				2999B33B2A407DE100B94939 /* FirebaseFirestore */,
 			);
 			productName = ArtVerse;
 			productReference = 29B5DF562A25F770005501B7 /* ArtVerse.app */;
@@ -366,7 +372,8 @@
 			);
 			mainGroup = 29B5DF4D2A25F76F005501B7;
 			packageReferences = (
-				29AA11C32A3F118300A9FDBF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2999B33F2A40976800B94939 /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
 			);
 			productRefGroup = 29B5DF572A25F770005501B7 /* Products */;
 			projectDirPath = "";
@@ -641,7 +648,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		29AA11C32A3F118300A9FDBF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -649,13 +656,31 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		2999B33F2A40976800B94939 /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yeahdongcn/UIColor-Hex-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		29AA11C42A3F118300A9FDBF /* FirebaseAuth */ = {
+		2999B3352A407DE100B94939 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 29AA11C32A3F118300A9FDBF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2999B3392A407DE100B94939 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		2999B33B2A407DE100B94939 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

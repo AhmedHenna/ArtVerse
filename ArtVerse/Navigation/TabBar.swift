@@ -73,7 +73,7 @@ struct TabBar: View {
             //left spacers
             if selectedTab == .library { Spacer() }
             if selectedTab == .explore { Spacer() }
-            if selectedTab == .notifications {
+            if selectedTab == .progress {
                 Spacer()
                 Spacer()
             }
@@ -84,7 +84,7 @@ struct TabBar: View {
                 Spacer()
                 Spacer()
             }
-            if selectedTab == .notifications { Spacer() }
+            if selectedTab == .progress { Spacer() }
         }
         .padding(.horizontal, 8)
     }
@@ -95,7 +95,7 @@ struct TabBar: View {
             //left spacers
             if selectedTab == .library { Spacer() }
             if selectedTab == .explore { Spacer() }
-            if selectedTab == .notifications {
+            if selectedTab == .progress {
                 Spacer()
                 Spacer()
             }
@@ -111,7 +111,7 @@ struct TabBar: View {
                 Spacer()
                 Spacer()
             }
-            if selectedTab == .notifications { Spacer() }
+            if selectedTab == .progress { Spacer() }
         }
         .padding(.horizontal, 8)
     }
