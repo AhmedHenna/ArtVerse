@@ -11,15 +11,15 @@ struct ListRow: View {
     @StateObject private var mainViewModel = MainViewModel()
 
     var topic: Topic?
-    
+
     var defaultTopic: Topic {
-        mainViewModel.topics[1]
+        mainViewModel.topics.indices.contains(0) ? mainViewModel.topics[0] : Topic(title: "", icon: "")
     }
-    
+
     var selectedTopic: Topic {
         topic ?? defaultTopic
     }
-    
+
     var body: some View {
         VStack {
             HStack(spacing: 16) {
