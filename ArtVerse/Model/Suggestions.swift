@@ -11,9 +11,3 @@ struct Suggestions: Identifiable{
     let id = UUID()
     var text: String
 }
-
-var suggestions = [
-    Suggestions(text: "Blender"),
-    Suggestions(text: "Photoshop"),
-    Suggestions(text: "Procreate")
-]

@@ -14,6 +14,7 @@ struct SearchView: View {
     @Namespace var namespace
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var mainViewModel = MainViewModel()
+    @StateObject private var searchViewModel = SearchViewModel()
 
     
     var body: some View {
@@ -31,7 +32,7 @@ struct SearchView: View {
             .background(Image("Blob").offset(x: -100, y: -200))
             .searchable(text: $text, placement:
                     .navigationBarDrawer(displayMode: .always), prompt: Text("Blender, Procreate, Ps")){
-                        ForEach(suggestions){ suggestion in
+                        ForEach(searchViewModel.suggestions){ suggestion in
                             if text == "" {
                                 Button {
                                 text = suggestion.text

@@ -63,7 +63,7 @@ struct ExploreView: View {
     
     var topicsSection: some View {
         VStack {
-            ForEach(topics) { topic in
+            ForEach(mainViewModel.topics) { topic in
                 ListRow(topic: topic)
             }
         }

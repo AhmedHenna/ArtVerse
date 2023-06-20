@@ -8,16 +8,26 @@
 import SwiftUI
 
 struct ListRow: View {
-    var topic: Topic = topics[0]
+    @StateObject private var mainViewModel = MainViewModel()
+
+    var topic: Topic?
+    
+    var defaultTopic: Topic {
+        mainViewModel.topics[1]
+    }
+    
+    var selectedTopic: Topic {
+        topic ?? defaultTopic
+    }
     
     var body: some View {
         VStack {
             HStack(spacing: 16) {
-                Image(systemName: topic.icon)
+                Image(systemName: selectedTopic.icon)
                     .frame(width: 36, height: 36)
                     .background(.ultraThinMaterial)
                     .mask(Circle())
-                Text(topic.title)
+                Text(selectedTopic.title)
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -31,4 +41,3 @@ struct ListRow_Previews: PreviewProvider {
         ListRow()
     }
 }
-

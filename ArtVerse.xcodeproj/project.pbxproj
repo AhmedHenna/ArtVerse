@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29076D3A2A42617D003541C2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29076D392A42617D003541C2 /* SearchViewModel.swift */; };
 		2917D9292A393C55003A668C /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2917D9282A393C55003A668C /* AvatarView.swift */; };
 		2921C0752A40E3FC00809A63 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C0742A40E3FC00809A63 /* HomeViewModel.swift */; };
 		2921C0772A40E51E00809A63 /* ColorFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921C0762A40E51E00809A63 /* ColorFromString.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29076D392A42617D003541C2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		2917D9282A393C55003A668C /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		2921C0742A40E3FC00809A63 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2921C0762A40E51E00809A63 /* ColorFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromString.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				2921C0742A40E3FC00809A63 /* HomeViewModel.swift */,
 				29AA11C92A3F147900A9FDBF /* AuthViewModel.swift */,
 				2921C0802A40F9C300809A63 /* MainViewModel.swift */,
+				29076D392A42617D003541C2 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				29AA11CC2A3F177300A9FDBF /* User.swift in Sources */,
 				2985AE5D2A311B2200EF2111 /* CourseItem.swift in Sources */,
 				2921C0752A40E3FC00809A63 /* HomeViewModel.swift in Sources */,
+				29076D3A2A42617D003541C2 /* SearchViewModel.swift in Sources */,
 				29886A0B2A37C0120083F2BA /* LogInView.swift in Sources */,
 				2921C0772A40E51E00809A63 /* ColorFromString.swift in Sources */,
 				29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */,

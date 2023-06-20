@@ -11,9 +11,11 @@ import Firebase
 
 class MainViewModel: ObservableObject {
     @Published var courses: [Course] = []
+    @Published var topics: [Topic] = []
     
     init() {
         fetchCourses()
+        fetchTopics()
     }
     
         
@@ -21,6 +23,14 @@ class MainViewModel: ObservableObject {
         FirestoreManager.shared.fetchCoursesFromFirestore { [weak self] courses in
             DispatchQueue.main.async {
                 self?.courses = courses
+            }
+        }
+    }
+    
+    func fetchTopics() {
+        FirestoreManager.shared.fetchTopicsFromFirestore { [weak self] topics in
+            DispatchQueue.main.async {
+                self?.topics = topics
             }
         }
     }

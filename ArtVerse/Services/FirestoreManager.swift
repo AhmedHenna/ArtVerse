@@ -74,4 +74,51 @@ class FirestoreManager {
             completion(fetchedCourses)
         }
     }
+    
+    func fetchSuggestionsFromFirestore(completion: @escaping ([Suggestions]) -> Void) {
+        db.collection("suggestions").getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+
+            var fetchedSuggestions: [Suggestions] = []
+
+            for document in documents {
+                let data = document.data()
+
+                if let text = data["text"] as? String {
+                    
+                    let suggestion = Suggestions(text: text)
+                    fetchedSuggestions.append(suggestion)
+                }
+            }
+            completion(fetchedSuggestions)
+        }
+    }
+    
+    func fetchTopicsFromFirestore(completion: @escaping ([Topic]) -> Void) {
+        db.collection("topics").getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+
+            var fetchedTopics: [Topic] = []
+
+            for document in documents {
+                let data = document.data()
+
+                if let text = data["text"] as? String,
+                   let icon = data["icon"] as? String{
+                    
+                    let topic = Topic(title: text, icon: icon)
+                    fetchedTopics.append(topic)
+                }
+            }
+            completion(fetchedTopics)
+        }
+    }
 }

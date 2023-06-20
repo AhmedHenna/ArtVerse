@@ -12,9 +12,3 @@ struct Topic: Identifiable {
     var title: String
     var icon: String
 }
-
-var topics = [
-    Topic(title: "3D Art", icon: "scale.3d"),
-    Topic(title: "Digital Art", icon: "ipad.landscape"),
-    Topic(title: "Traditional Art", icon: "pencil.line")
-]
