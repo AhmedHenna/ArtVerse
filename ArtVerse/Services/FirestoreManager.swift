@@ -152,4 +152,68 @@ class FirestoreManager {
             completion(fetchedHandbooks)
         }
     }
+    
+    func fetchAllSectionsFromFirestore(title: String, completion: @escaping ([CourseSection]) -> Void) {
+        db.collection("courseSections").whereField("title", isEqualTo: title).getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+            
+            var fetchedSections: [CourseSection] = []
+            
+            for document in documents {
+                let data = document.data()
+                
+                if let title = data["title"] as? String,
+                   let subtitle = data["subtitle"] as? String,
+                   let description = data["description"] as? String,
+                   let image = data["image"] as? String,
+                   let logo = data["logo"] as? String,
+                   let background = data["background"] as? String,
+                   let videoLink = data["videoLink"] as? String,
+                   let progress = data["progress"] as? CGFloat{
+                    
+                    let section = CourseSection(title: title, subtitle: subtitle, description: description, image: image,
+                                                background: background, logo: logo, videoLink: videoLink, progress: progress)
+                    fetchedSections.append(section)
+                }
+            }
+            completion(fetchedSections)
+        }
+    }
+    
+    func fetchCurrentSectionsFromFirestore(completion: @escaping ([CourseSection]) -> Void) {
+        db.collection("courseSections").getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+            
+            var fetchedSections: [CourseSection] = []
+            
+            for document in documents {
+                let data = document.data()
+                
+                if let title = data["title"] as? String,
+                   let subtitle = data["subtitle"] as? String,
+                   let description = data["description"] as? String,
+                   let image = data["image"] as? String,
+                   let logo = data["logo"] as? String,
+                   let background = data["background"] as? String,
+                   let videoLink = data["videoLink"] as? String,
+                   let progress = data["progress"] as? CGFloat{
+                    
+                    let section = CourseSection(title: title, subtitle: subtitle, description: description, image: image,
+                                                background: background, logo: logo, videoLink: videoLink, progress: progress)
+                    if section.progress > 0{
+                        fetchedSections.append(section)
+                    }
+                }
+            }
+            completion(fetchedSections)
+        }
+    }
 }

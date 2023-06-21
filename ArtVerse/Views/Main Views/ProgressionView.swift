@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProgressionView: View {
+    @StateObject private var mainViewModel = MainViewModel()
+
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -18,14 +20,14 @@ struct ProgressionView: View {
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
-            .overlay(AppBar(title: "Notifications", hasScrolled: .constant(true)))
+            .overlay(AppBar(title: "Progress", hasScrolled: .constant(true)))
             .background(Image("Blob").offset(x: -100 , y: -300))
         }
     }
     
     var sectionsSection: some View {
         VStack(alignment: .leading) {
-            ForEach(Array(courseSections.enumerated()), id: \.offset) { index, section in
+            ForEach(Array(mainViewModel.currentSections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
                 SectionRow(section: section)
             }

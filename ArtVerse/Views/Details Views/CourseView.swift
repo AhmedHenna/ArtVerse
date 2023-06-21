@@ -18,7 +18,8 @@ struct CourseView: View {
     @State var selectedIndex = 0
     @EnvironmentObject var model: Model
     @StateObject private var mainViewModel = MainViewModel()
-
+    @StateObject private var courseViewModel = CourseViewModel()
+    
     var defaultCourse: Course {
         mainViewModel.courses[1]
     }
@@ -52,6 +53,7 @@ struct CourseView: View {
         .ignoresSafeArea()
         .onAppear{
             fadeIn()
+            courseViewModel.fetchAllSections(title: selectedCourse.title)
         }
         .onDisappear {
             fadeOut()
@@ -161,8 +163,7 @@ struct CourseView: View {
     
     var courseContent: some View{
         VStack (alignment: .leading){
-            ForEach(Array(courseSections.enumerated()), id: \.offset){ index, section in
-                if index != 0 {Divider()}
+            ForEach(Array(courseViewModel.allSections.enumerated()), id: \.offset){ index, section in
                 SectionRow(section: section)
                     .onTapGesture {
                         selectedIndex = index
@@ -175,7 +176,7 @@ struct CourseView: View {
         .strokeStyle(cornerRadius: 30)
         .padding(20)
         .sheet(isPresented: $showSection) {
-            SectionView(section: courseSections[selectedIndex])
+            SectionView(section: courseViewModel.allSections[selectedIndex])
         }
     }
     

@@ -8,15 +8,26 @@
 import SwiftUI
 
 struct SectionView: View {
-    var section : CourseSection = courseSections[0]
+    @StateObject private var mainViewModel = MainViewModel()
+    @StateObject private var courseViewModel = CourseViewModel()
     @EnvironmentObject var model: Model
     @Environment(\.dismiss) var dismiss
+    
+    var section: CourseSection?
+    
+    var defaultSection: CourseSection {
+        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75)
+    }
+    
+    var selectedSection: CourseSection {
+        section ?? defaultSection
+    }
     
     var body: some View {
         ZStack {
             ScrollView {
                 topContainer
-                    .overlay(PlayButton().overlay(CircularView(value: section.progress, lineWidth: 5).padding(24)))
+                    .overlay(PlayButton().overlay(CircularView(value: selectedSection.progress, lineWidth: 5).padding(24)))
                 courseContent
                     .offset(y:120)
                     .padding(.bottom, 200)
@@ -26,7 +37,6 @@ struct SectionView: View {
             closeButton
         }
         .ignoresSafeArea()
-        
     }
     
     var topContainer: some View{
@@ -38,7 +48,7 @@ struct SectionView: View {
         .frame(height: 500)
         .foregroundStyle(.black)
         .background(
-            Image(section.image)
+            Image(selectedSection.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(20)
@@ -46,7 +56,7 @@ struct SectionView: View {
             
         )
         .background(
-            Image(section.background)
+            Image(selectedSection.background)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         )
@@ -76,12 +86,12 @@ struct SectionView: View {
     
     var foregroundDetailBox: some View{
         VStack (alignment: .leading, spacing: 12){
-            Text(section.title)
+            Text(selectedSection.title)
                 .font(.largeTitle.weight(.bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(section.subtitle.uppercased())
+            Text(selectedSection.subtitle.uppercased())
                 .font(.footnote.weight(.semibold))
-            Text(section.description)
+            Text(selectedSection.description)
                 .lineLimit(2)
                 .font(.footnote)
             Divider()
@@ -112,10 +122,9 @@ struct SectionView: View {
     
     var courseContent: some View{
         VStack(alignment: .leading, spacing: 30){
-            Text("Hello this is the blender course and here you will lear all sort of useless information like making a 3d donut").font(.title3).fontWeight(.medium)
-            Text("This Course").font(.title).bold()
-            Text("Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text text Text textText textText textText text")
-            Text("Some more text")
+            Text(selectedSection.title).font(.title).bold()
+            Text(selectedSection.description).fontWeight(.medium)
+            Text(selectedSection.subtitle)
         }
         .padding(20)
     }
