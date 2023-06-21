@@ -20,9 +20,11 @@ struct CourseView: View {
     @StateObject private var mainViewModel = MainViewModel()
     @StateObject private var courseViewModel = CourseViewModel()
     
+
     var defaultCourse: Course {
-        mainViewModel.courses[1]
+        mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] : Course(title: "", subtitle: "", description: "", image: "", logo: "", bg: "", height: 100)
     }
+    
     
     var selectedCourse: Course {
         course ?? defaultCourse
