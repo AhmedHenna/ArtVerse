@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgresssView: View {
+struct ProgressionView: View {
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -36,8 +36,8 @@ struct ProgresssView: View {
     }
 }
 
-struct ProgressView_Previews: PreviewProvider {
+struct ProgressionView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgresssView()
+        ProgressionView()
     }
 }

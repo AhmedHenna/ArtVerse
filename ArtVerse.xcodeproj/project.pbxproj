@@ -59,7 +59,7 @@
 		29EDC3702A3A4B700009A2E7 /* HandbookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC36F2A3A4B700009A2E7 /* HandbookItem.swift */; };
 		29EDC3742A3A4C5A0009A2E7 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3732A3A4C5A0009A2E7 /* Topic.swift */; };
 		29EDC3762A3A4C750009A2E7 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3752A3A4C750009A2E7 /* ListRow.swift */; };
-		29EDC37E2A3A4E780009A2E7 /* ProgresssView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */; };
+		29EDC37E2A3A4E780009A2E7 /* ProgressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37D2A3A4E780009A2E7 /* ProgressionView.swift */; };
 		29EDC3802A3A4F0F0009A2E7 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */; };
 		29EDC3822A3A4F450009A2E7 /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3812A3A4F450009A2E7 /* CertificateView.swift */; };
 		29EDC3862A3A61F50009A2E7 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3852A3A61F50009A2E7 /* TitleModifier.swift */; };
@@ -116,7 +116,7 @@
 		29EDC36F2A3A4B700009A2E7 /* HandbookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbookItem.swift; sourceTree = "<group>"; };
 		29EDC3732A3A4C5A0009A2E7 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		29EDC3752A3A4C750009A2E7 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
-		29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresssView.swift; sourceTree = "<group>"; };
+		29EDC37D2A3A4E780009A2E7 /* ProgressionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionView.swift; sourceTree = "<group>"; };
 		29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		29EDC3812A3A4F450009A2E7 /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		29EDC3852A3A61F50009A2E7 /* TitleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 			children = (
 				29429B912A2A96E90048046A /* HomeView.swift */,
 				29EDC3692A3A48980009A2E7 /* ExploreView.swift */,
-				29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */,
+				29EDC37D2A3A4E780009A2E7 /* ProgressionView.swift */,
 				29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */,
 			);
 			path = "Main Views";
@@ -461,7 +461,7 @@
 				2921C07C2A40F33000809A63 /* FirestoreManager.swift in Sources */,
 				29EDC3862A3A61F50009A2E7 /* TitleModifier.swift in Sources */,
 				29D31DDB2A35413A004F5B7A /* Suggestions.swift in Sources */,
-				29EDC37E2A3A4E780009A2E7 /* ProgresssView.swift in Sources */,
+				29EDC37E2A3A4E780009A2E7 /* ProgressionView.swift in Sources */,
 				2998AE242A28F1A400BAC2D9 /* BlobView.swift in Sources */,
 				29E5ADF92A2FB69F00B68FCD /* Course.swift in Sources */,
 				29EDC3822A3A4F450009A2E7 /* CertificateView.swift in Sources */,

@@ -20,7 +20,7 @@ struct ContentView: View {
             case .explore:
                 ExploreView()
             case .progress:
-                ProgresssView()
+                ProgressionView()
             case .library:
                 LibraryView()
             }
