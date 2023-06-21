@@ -28,7 +28,6 @@ struct ProgressionView: View {
     var sectionsSection: some View {
         VStack(alignment: .leading) {
             ForEach(Array(mainViewModel.currentSections.enumerated()), id: \.offset) { index, section in
-                if index != 0 { Divider() }
                 SectionRow(section: section)
             }
         }

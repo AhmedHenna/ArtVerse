@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CourseSection: Identifiable {
+struct CourseSection: Identifiable, Equatable {
     let id = UUID()
     var title: String
     var subtitle: String
@@ -17,4 +17,5 @@ struct CourseSection: Identifiable {
     var logo: String
     var videoLink: String
     var progress: CGFloat
+    var part: CGFloat
 }

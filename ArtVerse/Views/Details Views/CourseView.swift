@@ -32,6 +32,7 @@ struct CourseView: View {
     
     var body: some View {
         ZStack {
+            Text(courseViewModel.allSections.indices.contains(selectedIndex) ? courseViewModel.allSections[selectedIndex].title : "").foregroundColor(.clear)
             ScrollView {
                 topContainer
                 courseContent
@@ -164,16 +165,18 @@ struct CourseView: View {
     }
     
     var courseContent: some View{
-        VStack (alignment: .leading){
-            ForEach(Array(courseViewModel.allSections.enumerated()), id: \.offset){ index, section in
+        VStack(alignment: .leading) {
+            ForEach(Array(courseViewModel.allSections.sorted { $0.part < $1.part }.enumerated()), id: \.element.id) { index, section in
                 SectionRow(section: section)
                     .onTapGesture {
-                        selectedIndex = index
+                        let sortedIndex = courseViewModel.allSections.firstIndex(of: section)
+                        selectedIndex = sortedIndex ?? index
                         showSection = true
                     }
                     .frame(maxWidth: 500)
             }
         }
+
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .strokeStyle(cornerRadius: 30)
         .padding(20)

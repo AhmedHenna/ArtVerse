@@ -154,7 +154,7 @@ class FirestoreManager {
     }
     
     func fetchAllSectionsFromFirestore(title: String, completion: @escaping ([CourseSection]) -> Void) {
-        db.collection("courseSections").whereField("title", isEqualTo: title).getDocuments { (snapshot, error) in
+        db.collection("courseSections").whereField("subtitle", isEqualTo: title).getDocuments { (snapshot, error) in
             guard let documents = snapshot?.documents else {
                 print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
                 completion([])
@@ -173,10 +173,12 @@ class FirestoreManager {
                    let logo = data["logo"] as? String,
                    let background = data["background"] as? String,
                    let videoLink = data["videoLink"] as? String,
-                   let progress = data["progress"] as? CGFloat{
+                   let progress = data["progress"] as? CGFloat,
+                   let part = data["part"] as? CGFloat
+                {
                     
                     let section = CourseSection(title: title, subtitle: subtitle, description: description, image: image,
-                                                background: background, logo: logo, videoLink: videoLink, progress: progress)
+                                                background: background, logo: logo, videoLink: videoLink, progress: progress, part: part)
                     fetchedSections.append(section)
                 }
             }
@@ -204,10 +206,12 @@ class FirestoreManager {
                    let logo = data["logo"] as? String,
                    let background = data["background"] as? String,
                    let videoLink = data["videoLink"] as? String,
-                   let progress = data["progress"] as? CGFloat{
+                   let progress = data["progress"] as? CGFloat,
+                   let part = data["part"] as? CGFloat
+                {
                     
                     let section = CourseSection(title: title, subtitle: subtitle, description: description, image: image,
-                                                background: background, logo: logo, videoLink: videoLink, progress: progress)
+                                                background: background, logo: logo, videoLink: videoLink, progress: progress, part: part)
                     if section.progress > 0{
                         fetchedSections.append(section)
                     }

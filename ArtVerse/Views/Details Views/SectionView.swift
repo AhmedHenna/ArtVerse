@@ -16,7 +16,7 @@ struct SectionView: View {
     var section: CourseSection?
     
     var defaultSection: CourseSection {
-        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75)
+        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75, part: 0)
     }
     
     var selectedSection: CourseSection {
