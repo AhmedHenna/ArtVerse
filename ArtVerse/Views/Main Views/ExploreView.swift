@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ExploreView: View {
     @StateObject private var mainViewModel = MainViewModel()
+    @StateObject private var exploreViewModel = ExploreViewModel()
 
     var body: some View {
         ZStack {
@@ -51,7 +52,7 @@ struct ExploreView: View {
     var handbooksSection: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 16) {
-                ForEach(handbooks) { handbook in
+                ForEach(exploreViewModel.handbooks) { handbook in
                     HandbookItem(handbook: handbook)
                 }
             }

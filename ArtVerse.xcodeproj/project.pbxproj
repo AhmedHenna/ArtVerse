@@ -43,6 +43,7 @@
 		29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C234FD2A2754ED001ED417 /* AccountView.swift */; };
 		29D31DD92A353CD1004F5B7A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D31DD82A353CD1004F5B7A /* SearchView.swift */; };
 		29D31DDB2A35413A004F5B7A /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D31DDA2A35413A004F5B7A /* Suggestions.swift */; };
+		29D50D8E2A437DD400EEB763 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D50D8D2A437DD400EEB763 /* ExploreViewModel.swift */; };
 		29DF08BE2A2913F20053DB23 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF08BD2A2913F20053DB23 /* TabBar.swift */; };
 		29DF08C02A2918790053DB23 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF08BF2A2918790053DB23 /* Tab.swift */; };
 		29E19C772A3A009F007F6AA7 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E19C762A3A009F007F6AA7 /* CourseSection.swift */; };
@@ -58,7 +59,7 @@
 		29EDC3702A3A4B700009A2E7 /* HandbookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC36F2A3A4B700009A2E7 /* HandbookItem.swift */; };
 		29EDC3742A3A4C5A0009A2E7 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3732A3A4C5A0009A2E7 /* Topic.swift */; };
 		29EDC3762A3A4C750009A2E7 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3752A3A4C750009A2E7 /* ListRow.swift */; };
-		29EDC37E2A3A4E780009A2E7 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37D2A3A4E780009A2E7 /* NotificationsView.swift */; };
+		29EDC37E2A3A4E780009A2E7 /* ProgresssView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */; };
 		29EDC3802A3A4F0F0009A2E7 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */; };
 		29EDC3822A3A4F450009A2E7 /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3812A3A4F450009A2E7 /* CertificateView.swift */; };
 		29EDC3862A3A61F50009A2E7 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EDC3852A3A61F50009A2E7 /* TitleModifier.swift */; };
@@ -99,6 +100,7 @@
 		29C234FD2A2754ED001ED417 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		29D31DD82A353CD1004F5B7A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		29D31DDA2A35413A004F5B7A /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
+		29D50D8D2A437DD400EEB763 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		29DF08BD2A2913F20053DB23 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		29DF08BF2A2918790053DB23 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		29E19C762A3A009F007F6AA7 /* CourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 		29EDC36F2A3A4B700009A2E7 /* HandbookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbookItem.swift; sourceTree = "<group>"; };
 		29EDC3732A3A4C5A0009A2E7 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		29EDC3752A3A4C750009A2E7 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
-		29EDC37D2A3A4E780009A2E7 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresssView.swift; sourceTree = "<group>"; };
 		29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		29EDC3812A3A4F450009A2E7 /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		29EDC3852A3A61F50009A2E7 /* TitleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				29AA11C92A3F147900A9FDBF /* AuthViewModel.swift */,
 				2921C0802A40F9C300809A63 /* MainViewModel.swift */,
 				29076D392A42617D003541C2 /* SearchViewModel.swift */,
+				29D50D8D2A437DD400EEB763 /* ExploreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,7 +279,7 @@
 			children = (
 				29429B912A2A96E90048046A /* HomeView.swift */,
 				29EDC3692A3A48980009A2E7 /* ExploreView.swift */,
-				29EDC37D2A3A4E780009A2E7 /* NotificationsView.swift */,
+				29EDC37D2A3A4E780009A2E7 /* ProgresssView.swift */,
 				29EDC37F2A3A4F0F0009A2E7 /* LibraryView.swift */,
 			);
 			path = "Main Views";
@@ -458,7 +461,7 @@
 				2921C07C2A40F33000809A63 /* FirestoreManager.swift in Sources */,
 				29EDC3862A3A61F50009A2E7 /* TitleModifier.swift in Sources */,
 				29D31DDB2A35413A004F5B7A /* Suggestions.swift in Sources */,
-				29EDC37E2A3A4E780009A2E7 /* NotificationsView.swift in Sources */,
+				29EDC37E2A3A4E780009A2E7 /* ProgresssView.swift in Sources */,
 				2998AE242A28F1A400BAC2D9 /* BlobView.swift in Sources */,
 				29E5ADF92A2FB69F00B68FCD /* Course.swift in Sources */,
 				29EDC3822A3A4F450009A2E7 /* CertificateView.swift in Sources */,
@@ -479,6 +482,7 @@
 				29EDC3762A3A4C750009A2E7 /* ListRow.swift in Sources */,
 				29AA11CA2A3F147900A9FDBF /* AuthViewModel.swift in Sources */,
 				2972B03B2A2F897C00A9D968 /* PreferenceKeys.swift in Sources */,
+				29D50D8E2A437DD400EEB763 /* ExploreViewModel.swift in Sources */,
 				29E19C772A3A009F007F6AA7 /* CourseSection.swift in Sources */,
 				29DF08BE2A2913F20053DB23 /* TabBar.swift in Sources */,
 				2921C0812A40F9C300809A63 /* MainViewModel.swift in Sources */,

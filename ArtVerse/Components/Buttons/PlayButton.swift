@@ -23,15 +23,6 @@ struct PlayButton: View {
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 46, style: .continuous))
             .strokeStyle(cornerRadius: 46)
             .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
-            .overlay(
-                Text("12:08")
-                    .font(.footnote.weight(.semibold))
-                    .padding(.vertical, 2)
-                    .padding(.horizontal, 4)
-                    .background(Color(UIColor.systemBackground).opacity(0.3))
-                    .cornerRadius(4)
-                    .offset(y: 45)
-            )
     }
 }
 

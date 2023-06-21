@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NotificationsView: View {
+struct ProgresssView: View {
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -36,8 +36,8 @@ struct NotificationsView: View {
     }
 }
 
-struct NotificationsView_Previews: PreviewProvider {
+struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationsView()
+        ProgresssView()
     }
 }

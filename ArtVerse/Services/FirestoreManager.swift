@@ -24,12 +24,12 @@ class FirestoreManager {
                 completion([])
                 return
             }
-
+            
             var fetchedCourses: [Course] = []
-
+            
             for document in documents {
                 let data = document.data()
-
+                
                 if let title = data["title"] as? String,
                    let subtitle = data["subtitle"] as? String,
                    let description = data["description"] as? String,
@@ -53,12 +53,12 @@ class FirestoreManager {
                 completion([])
                 return
             }
-
+            
             var fetchedCourses: [Course] = []
-
+            
             for document in documents {
                 let data = document.data()
-
+                
                 if let title = data["title"] as? String,
                    let subtitle = data["subtitle"] as? String,
                    let description = data["description"] as? String,
@@ -82,12 +82,12 @@ class FirestoreManager {
                 completion([])
                 return
             }
-
+            
             var fetchedSuggestions: [Suggestions] = []
-
+            
             for document in documents {
                 let data = document.data()
-
+                
                 if let text = data["text"] as? String {
                     
                     let suggestion = Suggestions(text: text)
@@ -105,12 +105,12 @@ class FirestoreManager {
                 completion([])
                 return
             }
-
+            
             var fetchedTopics: [Topic] = []
-
+            
             for document in documents {
                 let data = document.data()
-
+                
                 if let text = data["text"] as? String,
                    let icon = data["icon"] as? String{
                     
@@ -119,6 +119,37 @@ class FirestoreManager {
                 }
             }
             completion(fetchedTopics)
+        }
+    }
+    
+    func fetchHandbooksFromFirestore(completion: @escaping ([Handbook]) -> Void) {
+        db.collection("handbooks").getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+            
+            var fetchedHandbooks: [Handbook] = []
+            
+            for document in documents {
+                let data = document.data()
+                
+                if let title = data["title"] as? String,
+                   let subtitle = data["subtitle"] as? String,
+                   let description = data["description"] as? String,
+                   let image = data["image"] as? String,
+                   let logo = data["logo"] as? String,
+                   let color1 = data["color1"] as? String,
+                   let color2 = data["color2"] as? String{
+                    
+                    
+                    let handbook = Handbook(title: title, subtitle: subtitle, description: description, logo: logo,
+                                            image: image, color1: colorFromString(color1) ?? .gray, color2: colorFromString(color2) ?? .white)
+                    fetchedHandbooks.append(handbook)
+                }
+            }
+            completion(fetchedHandbooks)
         }
     }
 }

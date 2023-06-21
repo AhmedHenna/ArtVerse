@@ -19,7 +19,7 @@ struct AvatarView: View {
                     case .success (let image):
                         image.resizable().transition(.scale(scale: 0.5, anchor: .center))
                     case .empty:
-                        ProgressView()
+                        ProgresssView()
                     case .failure(_):
                         Color.gray
                     default:

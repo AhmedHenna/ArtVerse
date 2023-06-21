@@ -18,7 +18,7 @@ struct TabItem: Identifiable{
 var tabItems = [
     TabItem(text: "Learn Now", icon: "house", tab: .home, color: .teal),
     TabItem(text: "Explore", icon: "magnifyingglass", tab: .explore, color: .blue),
-    TabItem(text: "Notifications", icon: "bell", tab: .progress, color: .red),
+    TabItem(text: "Progress", icon: "list.bullet.clipboard.fill", tab: .progress, color: .red),
     TabItem(text: "Library", icon: "rectangle.stack", tab: .library, color: .pink)
 ]
 

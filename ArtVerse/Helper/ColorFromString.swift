@@ -14,7 +14,7 @@ func colorFromString(_ colorString: String) -> Color? {
     case "red":
         return Color.red
     case "green":
-        return Color.green
+        return Color.green.opacity(0.5)
     case "cyan":
         return Color.cyan
     case "purple":
@@ -23,6 +23,8 @@ func colorFromString(_ colorString: String) -> Color? {
         return Color.pink
     case "teal":
         return Color.teal
+    case "mint":
+        return Color.mint
     default:
         return nil
     }
