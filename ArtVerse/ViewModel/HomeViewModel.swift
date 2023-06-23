@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchCoursesFeatured() {
+        print("hello")
         FirestoreManager.shared.fetchFeaturedCoursesFromFirestore { [weak self] courses in
             DispatchQueue.main.async {
                 self?.coursesFeatured = courses

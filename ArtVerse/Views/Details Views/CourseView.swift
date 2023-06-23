@@ -22,7 +22,7 @@ struct CourseView: View {
     
 
     var defaultCourse: Course {
-        mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] : Course(title: "", subtitle: "", description: "", image: "", logo: "", bg: "", height: 100)
+        mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] : Course(title: "", subtitle: "", description: "", image: "", logo: "", bg: "", height: 100, instructor: "", instructorImage: "")
     }
     
     
@@ -140,14 +140,14 @@ struct CourseView: View {
             Divider()
                 .opacity(appear[0] ? 1 : 0)
             HStack{
-                Image("Default Avatar")
+                Image(selectedCourse.instructorImage)
                     .resizable()
                     .frame(width:26, height: 26)
                     .cornerRadius(10)
                     .padding(8)
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
                     .strokeStyle(cornerRadius: 18)
-                Text("Taught by Blender Guru")
+                Text(selectedCourse.instructor)
                     .font(.footnote)
             }
             .opacity(appear[1] ? 1 : 0)

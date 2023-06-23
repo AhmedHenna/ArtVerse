@@ -16,4 +16,6 @@ struct Course: Identifiable{
     var logo: String
     var bg: String
     var height: CGFloat
+    var instructor: String
+    var instructorImage: String
 }

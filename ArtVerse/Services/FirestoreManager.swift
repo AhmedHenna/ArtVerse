@@ -36,9 +36,14 @@ class FirestoreManager {
                    let image = data["image"] as? String,
                    let logo = data["logo"] as? String,
                    let bg = data["bg"] as? String,
-                   let height = data["height"] as? CGFloat {
+                   let height = data["height"] as? CGFloat,
+                   let instructor = data["instructor"] as? String,
+                   let instructorImage = data["instructorImage"] as? String
                     
-                    let course = Course(title: title, subtitle: subtitle, description: description, image: image, logo: logo, bg: bg, height: height)
+                {
+                    
+                    let course = Course(title: title, subtitle: subtitle, description: description, image: image,
+                                        logo: logo, bg: bg, height: height, instructor: instructor,instructorImage: instructorImage)
                     fetchedCourses.append(course)
                 }
             }
@@ -65,9 +70,12 @@ class FirestoreManager {
                    let image = data["image"] as? String,
                    let logo = data["logo"] as? String,
                    let bg = data["bg"] as? String,
-                   let height = data["height"] as? CGFloat {
+                   let height = data["height"] as? CGFloat,
+                   let instructor = data["instructor"] as? String,
+                   let instructorImage = data["instructorImage"] as? String{
                     
-                    let course = Course(title: title, subtitle: subtitle, description: description, image: image, logo: logo, bg: bg, height: height)
+                    let course = Course(title: title, subtitle: subtitle, description: description, image: image,
+                                        logo: logo, bg: bg, height: height, instructor: instructor, instructorImage: instructorImage)
                     fetchedCourses.append(course)
                 }
             }
