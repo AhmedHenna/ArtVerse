@@ -12,11 +12,20 @@ struct SectionView: View {
     @StateObject private var courseViewModel = CourseViewModel()
     @EnvironmentObject var model: Model
     @Environment(\.dismiss) var dismiss
-    
+    var course: Course?
     var section: CourseSection?
     
+    var defaultCourse: Course {
+        mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] : Course(title: "", subtitle: "", description: "", image: "", logo: "", bg: "", height: 100, instructor: "", instructorImage: "")
+    }
+    
+    
+    var selectedCourse: Course {
+        course ?? defaultCourse
+    }
+    
     var defaultSection: CourseSection {
-        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75, part: 0)
+        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "Blender", subtitle: "15 sections - 4 hours", description: "this is just a testing lol lololololol lol olol", image: "Illustration 7", background: "Background 4", logo: "Blender", videoLink: "", progress: 0.75, part: 0)
     }
     
     var selectedSection: CourseSection {
@@ -95,19 +104,17 @@ struct SectionView: View {
                 .lineLimit(2)
                 .font(.footnote)
             Divider()
-                .opacity(0)
             HStack{
-                Image("Default Avatar")
+                Image(selectedCourse.instructorImage)
                     .resizable()
                     .frame(width:26, height: 26)
                     .cornerRadius(10)
                     .padding(8)
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
                     .strokeStyle(cornerRadius: 18)
-                Text("Taught by Blender Guru")
+                Text(selectedCourse.instructor)
                     .font(.footnote)
             }
-            .opacity(0)
         }
         .padding(20)
         .background(
@@ -121,11 +128,18 @@ struct SectionView: View {
     }
     
     var courseContent: some View{
-        VStack(alignment: .leading, spacing: 30){
-            Text(selectedSection.title).font(.title).bold()
-            Text(selectedSection.description).fontWeight(.medium)
-            Text(selectedSection.subtitle)
+        VStack(alignment: .leading, spacing: 12){
+            Text("More info about course").font(.title3).bold()
+            Divider()
+            Text(selectedCourse.title).bold()
+            Text(selectedCourse.description).font(.subheadline)
         }
+        .padding(20)
+        .background(
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
+        )
         .padding(20)
     }
 }
