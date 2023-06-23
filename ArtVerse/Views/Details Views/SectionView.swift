@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import YouTubePlayerKit
 
 struct SectionView: View {
     @StateObject private var mainViewModel = MainViewModel()
     @StateObject private var courseViewModel = CourseViewModel()
+    @State private var isPlayerVisible = false
     @EnvironmentObject var model: Model
     @Environment(\.dismiss) var dismiss
     var course: Course?
@@ -35,8 +37,7 @@ struct SectionView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                topContainer
-                    .overlay(PlayButton().overlay(CircularView(value: selectedSection.progress, lineWidth: 5).padding(24)))
+                topContainer.overlay(playButton)
                 courseContent
                     .offset(y:120)
                     .padding(.bottom, 200)
@@ -46,6 +47,9 @@ struct SectionView: View {
             closeButton
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $isPlayerVisible) {
+            YouTubePlayerView("https://www.youtube.com/watch?v=9GK88TITIFE")
+        }
     }
     
     var topContainer: some View{
@@ -142,7 +146,19 @@ struct SectionView: View {
         )
         .padding(20)
     }
+    
+    var playButton: some View{
+        Button(action: {
+            isPlayerVisible = true
+            print(selectedSection.videoLink)
+        }) {
+            PlayButton().overlay(CircularView(value: selectedSection.progress, lineWidth: 5).padding(24))
+        }
+        .frame(width: 100, height: 100)
+    }
 }
+
+
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {

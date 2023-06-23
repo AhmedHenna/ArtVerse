@@ -140,17 +140,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2921C0782A40E52800809A63 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				2921C0762A40E51E00809A63 /* ColorFromString.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
 		2921C07D2A40F33A00809A63 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2921C0762A40E51E00809A63 /* ColorFromString.swift */,
 				2921C07B2A40F33000809A63 /* FirestoreManager.swift */,
 			);
 			path = Services;
@@ -262,7 +255,6 @@
 				29429B932A2A990B0048046A /* Navigation */,
 				29429B952A2A995A0048046A /* Components */,
 				29429B972A2A998A0048046A /* Styles */,
-				2921C0782A40E52800809A63 /* Helper */,
 				2921C07D2A40F33A00809A63 /* Services */,
 				29B5DF5F2A25F771005501B7 /* Preview Content */,
 				29E551FD2A3F829B00624057 /* GoogleService-Info.plist */,
