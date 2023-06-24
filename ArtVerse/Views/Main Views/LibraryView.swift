@@ -8,17 +8,28 @@
 import SwiftUI
 
 struct LibraryView: View {
+    @State var courseCardPressed = false
+    @State var showStatusBar = true
+    @State var selectedID = UUID()
+    @EnvironmentObject var model: Model
     @StateObject private var mainViewModel = MainViewModel()
-
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
             
             ScrollView {
-            
-                coursesViewdPreviously
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 20)], spacing: 20) {
+                    if !courseCardPressed{
+                        CourseHorizontalView(courses: mainViewModel.courses, courseCardPressed: $courseCardPressed,
+                                             showStatusBar: $showStatusBar, selectedID: $selectedID, model: _model)
+                    }else{
+                        CardFiller(courses: mainViewModel.courses)
+                    }
+                }
+                .padding(.horizontal, 20)
                 
-                topicsSection.padding(.top)
+                TopicsSectionView(topics: mainViewModel.topics).padding(.top)
                 
                 Text("Certificates".uppercased())
                     .titleStyle()
@@ -41,35 +52,24 @@ struct LibraryView: View {
                 
             }
             .safeAreaInset(edge: .top) {
-                Color.clear.frame(height: 70)
-            }
+                Color.clear.frame(height: 70)}
             .overlay(AppBar(title: "Library", hasScrolled: .constant(true)))
             .background(Image("Blob").offset(y: -300))
+            
+            if courseCardPressed{
+                CourseCardDetails(courses: mainViewModel.courses, selectedID: selectedID, courseCardPressed: $courseCardPressed)
+            }
         }
-    }
-    
-    var coursesViewdPreviously: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(mainViewModel.courses) { course in
-                    SmallCourseItem(course: course)
+        .statusBar(hidden: !showStatusBar)
+        .onChange(of: courseCardPressed){ newValue in
+            withAnimation(.closeCard){
+                if newValue{
+                    showStatusBar = false
+                }else{
+                    showStatusBar = true
                 }
             }
-            .padding(.horizontal, 20)
-            Spacer()
         }
-    }
-    
-    var topicsSection: some View {
-        VStack {
-            ForEach(mainViewModel.topics) { topic in
-                ListRow(topic: topic)
-            }
-        }
-        .padding(20)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
-        .strokeStyle(cornerRadius: 30)
-        .padding(.horizontal, 20)
     }
 }
 

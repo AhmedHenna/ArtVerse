@@ -9,20 +9,31 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @State var courseCardPressed = false
+    @State var showStatusBar = true
+    @State var selectedID = UUID()
+    @EnvironmentObject var model: Model
     @StateObject private var mainViewModel = MainViewModel()
     @StateObject private var exploreViewModel = ExploreViewModel()
-
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
             
             ScrollView {
-                coursesSection
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 20)], spacing: 20) {
+                    if !courseCardPressed{
+                        CourseHorizontalView(courses: mainViewModel.courses, courseCardPressed: $courseCardPressed,
+                                             showStatusBar: $showStatusBar, selectedID: $selectedID, model: _model)
+                    }else{
+                        CardFiller(courses: mainViewModel.courses)
+                    }
+                }
                 
                 Text("Topics".uppercased())
                     .titleStyle()
                 
-                topicsSection
+                TopicsSectionView(topics: mainViewModel.topics)
                 
                 Text("Popular".uppercased())
                     .titleStyle()
@@ -30,22 +41,23 @@ struct ExploreView: View {
                 handbooksSection
             }
             .safeAreaInset(edge: .top) {
-                Color.clear.frame(height: 70)
-            }
+                Color.clear.frame(height: 70)}
             .overlay(AppBar(title: "Recent", hasScrolled: .constant(true)))
             .background(Image("Blob").offset(x: -100, y: -400))
+            
+            if courseCardPressed{
+                CourseCardDetails(courses: mainViewModel.courses, selectedID: selectedID, courseCardPressed: $courseCardPressed)
+            }
         }
-    }
-    
-    var coursesSection: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(mainViewModel.courses) { course in
-                    SmallCourseItem(course: course)
+        .statusBar(hidden: !showStatusBar)
+        .onChange(of: courseCardPressed){ newValue in
+            withAnimation(.closeCard){
+                if newValue{
+                    showStatusBar = false
+                }else{
+                    showStatusBar = true
                 }
             }
-            .padding(.horizontal, 20)
-            Spacer()
         }
     }
     
@@ -59,19 +71,6 @@ struct ExploreView: View {
             .frame(height: 330)
             .padding(.horizontal, 20)
         }
-    }
-
-    
-    var topicsSection: some View {
-        VStack {
-            ForEach(mainViewModel.topics) { topic in
-                ListRow(topic: topic)
-            }
-        }
-        .padding(20)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
-        .strokeStyle(cornerRadius: 30)
-        .padding(.horizontal, 20)
     }
 }
 

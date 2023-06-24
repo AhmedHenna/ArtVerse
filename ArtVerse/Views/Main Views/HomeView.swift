@@ -37,7 +37,7 @@ struct HomeView: View {
                     if !courseCardPressed{
                         courseCards
                     }else{
-                        cardFillerToStopAutoScrollingtoTop
+                        CardFiller(courses: mainViewModel.courses)
                     }
                 }
                 .padding(.horizontal, 20)
@@ -48,7 +48,7 @@ struct HomeView: View {
             .overlay(AppBar(title: "Featured", hasScrolled: $hasScrolled))
             
             if courseCardPressed{
-                courseCardDetails
+                CourseCardDetails(courses: mainViewModel.courses, selectedID: selectedID, courseCardPressed: $courseCardPressed)
             }
         }
         .statusBar(hidden: !showStatusBar)
@@ -126,35 +126,6 @@ struct HomeView: View {
                         selectedID = course.id
                     }
                 }
-        }
-    }
-    
-    var courseCardDetails: some View{
-        ForEach(mainViewModel.courses) { course in
-            if course.id == selectedID{
-                CourseView(namespace: namespace, course: course, courseCardPressed: $courseCardPressed)
-                    .zIndex(1)
-                    .transition(
-                        .asymmetric(
-                            insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-                            removal: .opacity.animation(.easeInOut(duration: 0.2))
-                        )
-                    )
-            }
-        }
-    }
-    
-    /*this just acts as the courses card, since once one of them is clicked they are removed
-    so this will help stop the autoscrolling to the top*/
-    var cardFillerToStopAutoScrollingtoTop: some View{
-        ForEach(mainViewModel.courses) { course in
-            Rectangle()
-                .fill(.white)
-                .frame(height: 300)
-                .cornerRadius(30)
-                .shadow(color: Color("Shadow"), radius: 20, x: 0, y:10)
-                .opacity(0.3)
-                .padding(.horizontal, 30)
         }
     }
 }

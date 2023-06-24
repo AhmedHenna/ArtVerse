@@ -15,7 +15,7 @@ struct ProgressionView: View {
             Color("Background").ignoresSafeArea()
             
             ScrollView {
-                sectionsSection
+                progressAllSections
             }
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
@@ -25,7 +25,7 @@ struct ProgressionView: View {
         }
     }
     
-    var sectionsSection: some View {
+    var progressAllSections: some View {
         VStack(alignment: .leading) {
             ForEach(Array(mainViewModel.currentSections.enumerated()), id: \.offset) { index, section in
                 SectionRow(section: section)
