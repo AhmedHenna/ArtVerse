@@ -16,6 +16,8 @@ struct SectionView: View {
     @Environment(\.dismiss) var dismiss
     var course: Course?
     var section: CourseSection?
+    private let youTubePlayer = YouTubePlayer(
+        source: .url("https://www.youtube.com/watch?v=GYkq9Rgoj8E"))
     
     var defaultCourse: Course {
         mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] : Course(title: "", subtitle: "", description: "", image: "", logo: "", bg: "", height: 100, instructor: "", instructorImage: "")
@@ -48,7 +50,12 @@ struct SectionView: View {
         }
         .ignoresSafeArea()
         .sheet(isPresented: $isPlayerVisible) {
-            YouTubePlayerView("https://www.youtube.com/watch?v=9GK88TITIFE")
+            YouTubePlayerView(
+                self.youTubePlayer,
+                placeholderOverlay: {
+                    ProgressView()
+                }
+            )
         }
     }
     
@@ -149,8 +156,8 @@ struct SectionView: View {
     
     var playButton: some View{
         Button(action: {
+            self.youTubePlayer.source = .url(selectedSection.videoLink)
             isPlayerVisible = true
-            print(selectedSection.videoLink)
         }) {
             PlayButton().overlay(CircularView(value: selectedSection.progress, lineWidth: 5).padding(24))
         }
