@@ -45,9 +45,9 @@ class AuthViewModel: ObservableObject {
                     print("User profile saved successfully!")
                 }
             }
+            showModal = false
+            isLoggedIn = true
         }
-        isLoggedIn = true
-        showModal = false
     }
     
     func login() {

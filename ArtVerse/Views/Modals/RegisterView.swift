@@ -95,12 +95,17 @@ struct RegisterView: View {
                 Button {
                     viewModel.register()
                     generator.selectionChanged()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                         if !viewModel.checkIfLoggedIn(){
                             showAlert = true
                         }
                     }
-                    model.selectedModal = .logIn
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                        if viewModel.checkIfLoggedIn(){
+                            model.selectedModal = .logIn
+                        }
+                    }
+                    
                 } label: {
                     Text("Register account")
                         .frame(maxWidth: .infinity)
