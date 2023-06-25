@@ -21,7 +21,7 @@ struct AccountView: View {
                 links
                 
                 Button {
-                    viewModel.isLoggedIn = false
+                    viewModel.signOut()
                     dismiss()
                 } label: {
                     Text("Log out")
@@ -36,7 +36,7 @@ struct AccountView: View {
     
     var profile: some View{
         VStack (spacing: 8) {
-            Image(systemName: "person.crop.circle.fill.badge.checkmark")
+            Image(systemName: "person")
                 .font(.system(size: 32))
                 .symbolRenderingMode(.palette)
                 .foregroundStyle(.blue, .blue.opacity(0.3))
@@ -50,7 +50,7 @@ struct AccountView: View {
                         .offset(x:250, y:0)
                         .scaleEffect(0.7)
                 )
-            Text("Ahmed Henna")
+            Text(viewModel.getUserFullName() ?? "Anonymous Wizard")
                 .font(.title.weight(.semibold))
             HStack{
                 Image(systemName: "location").imageScale(.medium)

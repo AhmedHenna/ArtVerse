@@ -68,8 +68,8 @@ struct LogInView: View {
                 Button {
                     viewModel.login()
                     generator.selectionChanged()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                        if !viewModel.isLoggedIn {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+                        if !viewModel.checkIfLoggedIn(){
                             showAlert = true
                         }
                     }

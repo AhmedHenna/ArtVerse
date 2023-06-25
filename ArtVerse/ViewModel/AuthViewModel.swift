@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import SwiftUI
 
 class AuthViewModel: ObservableObject {
     @Published var email: String = "" { didSet { validateFields() } }
@@ -17,6 +18,7 @@ class AuthViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var errorTitle: String = ""
     @Published var errorDescription: String = ""
+    @AppStorage("showModal") var showModal = false
     
     func validateFields() {
         fieldsNotEmpty = !email.isEmpty && !password.isEmpty
@@ -38,13 +40,14 @@ class AuthViewModel: ObservableObject {
             
             changeRequest?.commitChanges { error in
                 if let error = error {
-                    print("Error saving user profile")
+                    print("Error saving user profile \(error.localizedDescription)" )
                 } else {
                     print("User profile saved successfully!")
                 }
             }
         }
         isLoggedIn = true
+        showModal = false
     }
     
     func login() {
@@ -54,13 +57,38 @@ class AuthViewModel: ObservableObject {
             if let error = error {
                 self.handleAuthError(error)
                 self.isLoggedIn = false
-                print("fail")
             } else {
                 self.isLoggedIn = true
-                print("success")
+                showModal = false
             }
         }
     }
+    
+    func checkIfLoggedIn() -> Bool{
+        if Auth.auth().currentUser?.uid != nil {
+            print("User is signed in")
+            return true
+        }else{
+            print("User is not signed in")
+            return false
+        }
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            isLoggedIn = false
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+    }
+    
+    func getUserFullName() -> String? {
+           guard let currentUser = Auth.auth().currentUser else {
+               return nil
+           }
+           return currentUser.displayName
+       }
     
     private func handleAuthError(_ error: Error) {
         if let errorCode = AuthErrorCode.Code(rawValue: (error as NSError).code) {
@@ -77,7 +105,6 @@ class AuthViewModel: ObservableObject {
             case .invalidEmail:
                 self.errorTitle = "Invalid Email"
             case .weakPassword:
-                print("WEAK")
                 self.errorTitle = "Weak Password"
             default:
                 self.errorTitle = "Unkown Error"

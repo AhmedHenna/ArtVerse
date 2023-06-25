@@ -16,7 +16,7 @@ struct RegisterView: View {
         case lastName
     }
     
-    @StateObject var viewModel = AuthViewModel()
+    @ObservedObject var viewModel = AuthViewModel()
     @State var circlePosition: CGFloat = 120
     @State var firstNameYPos: CGFloat = 0
     @State var lastNameYPos: CGFloat = 0
@@ -96,10 +96,11 @@ struct RegisterView: View {
                     viewModel.register()
                     generator.selectionChanged()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                        if !viewModel.isLoggedIn {
+                        if !viewModel.checkIfLoggedIn(){
                             showAlert = true
                         }
                     }
+                    model.selectedModal = .logIn
                 } label: {
                     Text("Register account")
                         .frame(maxWidth: .infinity)

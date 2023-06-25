@@ -13,7 +13,6 @@ struct ModalView: View {
     @State var viewState: CGSize = .zero
     @State var isDismiss = false
     @State var appear = [false, false, false]
-    @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
         ZStack {
@@ -61,6 +60,7 @@ struct ModalView: View {
             .padding(20)
             .opacity(appear[1] ? 1 : 0)
             .offset(y: appear[1] ? 0 : -200)
+            
         }
         .onAppear(){
             withAnimation(.easeOut){
@@ -71,11 +71,6 @@ struct ModalView: View {
             }
             withAnimation(.easeOut(duration: 1).delay(0.2)){
                 appear[2] = true
-            }
-        }
-        .onChange(of: viewModel.isLoggedIn) { newValue in
-            if newValue {
-                dismissModal()
             }
         }
     }
@@ -99,6 +94,7 @@ struct ModalView: View {
     func dismissModal() {
         withAnimation {
             isDismiss = true
+            model.selectedModal = .logIn
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

@@ -44,7 +44,7 @@ struct AppBar: View {
                 }
                 
                 Button {
-                    if viewModel.isLoggedIn{
+                    if viewModel.checkIfLoggedIn(){
                         showAccount = true
                     }else{
                         withAnimation{
