@@ -20,8 +20,10 @@ struct LogInView: View {
     @State var passwordYPos: CGFloat = 0
     @State var circleColor: Color = .blue
     @State var appear = [false, false, false]
+    @State private var showAlert = false
     @FocusState var focusField: Field?
     @EnvironmentObject var model: Model
+    
     private let generator = UISelectionFeedbackGenerator()
     
     
@@ -66,6 +68,11 @@ struct LogInView: View {
                 Button {
                     viewModel.login()
                     generator.selectionChanged()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                        if !viewModel.isLoggedIn {
+                            showAlert = true
+                        }
+                    }
                 } label: {
                     Text("Log in")
                         .frame(maxWidth: .infinity)
@@ -94,6 +101,13 @@ struct LogInView: View {
             }
             .opacity(appear[2] ? 1 : 0)
             .offset(y: appear[2] ? 0 : 20)
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(viewModel.errorTitle),
+                    message: Text(viewModel.errorDescription),
+                    dismissButton: .default(Text("Dismiss"))
+                )
+            }
         }
         .padding(20)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
