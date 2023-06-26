@@ -93,22 +93,22 @@ struct RegisterView: View {
                     }
                 
                 Button {
-                    viewModel.register()
-                    generator.selectionChanged()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
-                        if !viewModel.checkIfLoggedIn(){
+                    viewModel.register{ success in
+                        if !success {
                             showAlert = true
-                        }
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
-                        if viewModel.checkIfLoggedIn(){
+                        }else{
                             model.selectedModal = .logIn
                         }
                     }
-                    
+                    generator.selectionChanged()
                 } label: {
-                    Text("Register account")
-                        .frame(maxWidth: .infinity)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text("Register Account")
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .font(.headline)
                 .blendMode(.overlay)

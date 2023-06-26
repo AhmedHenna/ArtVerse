@@ -18,58 +18,68 @@ class AuthViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var errorTitle: String = ""
     @Published var errorDescription: String = ""
+    @Published var isLoading = false
     @AppStorage("showModal") var showModal = false
     
     func validateFields() {
         fieldsNotEmpty = !email.isEmpty && !password.isEmpty
     }
     
-    func register() {
+    func register(completion: @escaping (Bool) -> Void) {
+        isLoading = true
+
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
-            
+
             if let error = error {
                 self.handleAuthError(error)
                 self.isLoggedIn = false
+                completion(false)
+                self.isLoading = false
                 return
             }
-            
-            // User creation successful, save additional user details
-            let changeRequest = result?.user.createProfileChangeRequest()
+
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = "\(self.firstName) \(self.lastName)"
-            
-            changeRequest?.commitChanges { error in
+            changeRequest?.commitChanges { [weak self] error in
                 if let error = error {
-                    print("Error saving user profile \(error.localizedDescription)" )
+                    print("Error saving user profile \(error.localizedDescription)")
                 } else {
                     print("User profile saved successfully!")
                 }
+                self?.isLoggedIn = true
+                completion(true)
+                self?.showModal = false
+                self?.isLoading = false
             }
-            showModal = false
-            isLoggedIn = true
         }
     }
+
     
-    func login() {
+    func login(completion: @escaping (Bool) -> Void) {
+        isLoading = true // Set isLoading to true before starting the login process
+
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
-            
+
+            self.isLoading = false // Set isLoading to false when the login process completes
+
             if let error = error {
                 self.handleAuthError(error)
                 self.isLoggedIn = false
+                completion(false) // Call the completion handler with false if login fails
             } else {
                 self.isLoggedIn = true
-                showModal = false
+                self.showModal = false
+                completion(true) // Call the completion handler with true if login succeeds
             }
         }
     }
     
     func checkIfLoggedIn() -> Bool{
         if Auth.auth().currentUser?.uid != nil {
-            print("User is signed in")
             return true
         }else{
-            print("User is not signed in")
             return false
         }
     }

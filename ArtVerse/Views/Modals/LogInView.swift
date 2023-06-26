@@ -66,16 +66,20 @@ struct LogInView: View {
                     }
                 
                 Button {
-                    viewModel.login()
-                    generator.selectionChanged()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-                        if !viewModel.checkIfLoggedIn(){
+                    viewModel.login { success in
+                        if !success {
                             showAlert = true
                         }
                     }
+                    generator.selectionChanged()
                 } label: {
-                    Text("Log in")
-                        .frame(maxWidth: .infinity)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text("Log in")
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .font(.headline)
                 .blendMode(.overlay)
