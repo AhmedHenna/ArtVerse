@@ -19,37 +19,9 @@ struct LibraryView: View {
             Color("Background").ignoresSafeArea()
             
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 20)], spacing: 20) {
-                    if !courseCardPressed{
-                        CourseHorizontalView(courses: mainViewModel.courses, courseCardPressed: $courseCardPressed,
-                                             showStatusBar: $showStatusBar, selectedID: $selectedID, model: _model)
-                    }else{
-                        CardFiller(courses: mainViewModel.courses)
-                    }
-                }
-                .padding(.horizontal, 20)
-                
+                coursesSection
                 TopicsSectionView(topics: mainViewModel.topics).padding(.top)
-                
-                Text("Certificates".uppercased())
-                    .titleStyle()
-                
-                CertificateView()
-                    .frame(height: 220)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30, style: .continuous)
-                            .fill(.linearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .padding(20)
-                            .offset(y: -30)
-                    )
-                    .background(
-                        RoundedRectangle(cornerRadius: 30, style: .continuous)
-                            .fill(.linearGradient(colors: [.teal, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .padding(40)
-                            .offset(y: -60)
-                    )
-                    .padding(20)
-                
+                certificates
             }
             .safeAreaInset(edge: .top) {
                 Color.clear.frame(height: 70)}
@@ -71,6 +43,42 @@ struct LibraryView: View {
             }
         }
     }
+    
+    var coursesSection: some View{
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 20)], spacing: 20) {
+            if !courseCardPressed{
+                CourseHorizontalView(courses: mainViewModel.courses, courseCardPressed: $courseCardPressed,
+                                     showStatusBar: $showStatusBar, selectedID: $selectedID, model: _model)
+            }else{
+                CardFiller(courses: mainViewModel.courses)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    var certificates: some View{
+        VStack{
+            Text("Certificates".uppercased())
+                .titleStyle()
+            
+            CertificateView()
+                .frame(height: 220)
+                .background(
+                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                        .fill(.linearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .padding(20)
+                        .offset(y: -30)
+                )
+                .background(
+                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                        .fill(.linearGradient(colors: [.teal, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .padding(40)
+                        .offset(y: -60)
+                )
+                .padding(20)
+        }
+    }
+    
 }
 
 struct LibraryView_Previews: PreviewProvider {

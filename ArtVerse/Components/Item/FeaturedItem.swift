@@ -14,9 +14,12 @@ struct FeaturedItem: View {
     var course: Course?
     
     var defaultCourse: Course {
-        mainViewModel.courses[0]
+        mainViewModel.courses.indices.contains(0) ? mainViewModel.courses[0] :
+        Course(title: "Blender", subtitle: "Learn 3D", description: "Make a Donut",
+               image: "Illustration 1", logo: "Blender", bg: "Background 5", height: 400,
+               instructor: "Blender Guru", instructorImage: "Blender Guru")
     }
-    
+
     var selectedCourse: Course {
         course ?? defaultCourse
     }

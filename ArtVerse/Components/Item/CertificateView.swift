@@ -10,27 +10,41 @@ import SwiftUI
 import SwiftUI
 
 struct CertificateView: View {
+    @StateObject private var viewModel = CertificateViewModel()
+    
+    var certificate: Certificate?
+    
+    var defaultCertificate: Certificate {
+        viewModel.certificates.indices.contains(0) ? viewModel.certificates[0] :
+        Certificate(title: "Procreate", subtitle: "Certificate", date: "July 27, 2023", instructor: "Cayde-6", image: "Procreate")
+    }
+    
+    var selectedCertificate: Certificate {
+        certificate ?? defaultCertificate
+    }
+    
+
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Blender Beginners Course")
+                Text(selectedCertificate.title)
                     .font(.title3.weight(.semibold))
-                Text("Certificate")
+                Text(selectedCertificate.subtitle)
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(.secondary)
             }
             Spacer()
             VStack(alignment: .leading, spacing: 8) {
-                Text("July 27, 2023".uppercased())
+                Text(selectedCertificate.date.uppercased())
                     .font(.footnote.weight(.semibold))
-                Text("DesignCode instructor: Blender Guru")
+                Text("Instructor: \(selectedCertificate.instructor)")
                     .font(.footnote.weight(.medium))
             }
             .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(
-            Image("Blender")
+            Image(selectedCertificate.image)
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 26.0, height: 26.0)

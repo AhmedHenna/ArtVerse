@@ -36,12 +36,10 @@ struct AccountView: View {
     
     var profile: some View{
         VStack (spacing: 8) {
-            Image(systemName: "person")
-                .font(.system(size: 32))
+            AvatarView(height: 50, width: 50, imageCornerRadius: 32, backgroundCornerRadius: 32)
+                .cornerRadius(18)
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(.blue, .blue.opacity(0.3))
                 .padding()
-                .background(Circle().fill(.ultraThinMaterial))
                 .background(
                     HexagonView().offset(x: -40, y: -115)
                 )

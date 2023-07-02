@@ -228,4 +228,32 @@ class FirestoreManager {
             completion(fetchedSections)
         }
     }
+    
+    func fetchCertificatesFromFirestore(completion: @escaping ([Certificate]) -> Void) {
+        db.collection("certificates").getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+            
+            var fetchedCertificates: [Certificate] = []
+            
+            for document in documents {
+                let data = document.data()
+                
+                if let title = data["title"] as? String,
+                   let subtitle = data["subtitle"] as? String,
+                   let date = data["date"] as? String,
+                   let instructor = data["instructor"] as? String,
+                   let image = data["image"] as? String
+                {
+                    
+                    let certificate = Certificate(title: title, subtitle: subtitle, date: date, instructor: instructor, image: image)
+                    fetchedCertificates.append(certificate)
+                }
+            }
+            completion(fetchedCertificates)
+        }
+    }
 }

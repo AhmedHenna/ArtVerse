@@ -10,6 +10,10 @@ import SwiftUI
 struct AvatarView: View {
     @ObservedObject var viewModel = AuthViewModel()
     @State private var isLoggedIn = false
+    var height: CGFloat = 24
+    var width: CGFloat = 24
+    var imageCornerRadius: CGFloat = 10
+    var backgroundCornerRadius: CGFloat = 18
 
     var body: some View {
         Group {
@@ -32,11 +36,11 @@ struct AvatarView: View {
                     .resizable()
             }
         }
-        .frame(width: 26, height: 26)
-        .cornerRadius(10)
+        .frame(width: width, height: height)
+        .cornerRadius(imageCornerRadius)
         .padding(8)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-        .strokeStyle(cornerRadius: 18)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: backgroundCornerRadius, style: .continuous))
+        .strokeStyle(cornerRadius: backgroundCornerRadius)
         .onAppear {
             isLoggedIn = viewModel.checkIfLoggedIn()
         }

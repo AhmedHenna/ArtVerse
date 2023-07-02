@@ -10,18 +10,18 @@ import SwiftUI
 struct SectionRow: View {
     @StateObject private var mainViewModel = MainViewModel()
     @StateObject private var courseViewModel = CourseViewModel()
-
     
-
+    
+    
     var section: CourseSection?
-       
-       var defaultSection: CourseSection {
-           courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75, part: 0)
-       }
-       
-       var selectedSection: CourseSection {
-           section ?? defaultSection
-       }
+    
+    var defaultSection: CourseSection {
+        courseViewModel.allSections.indices.contains(0) ? courseViewModel.allSections[0] : CourseSection(title: "", subtitle: "", description: "", image: "", background: "", logo: "", videoLink: "", progress: 0.75, part: 0)
+    }
+    
+    var selectedSection: CourseSection {
+        section ?? defaultSection
+    }
     
     var body: some View {
         HStack(alignment: .top , spacing: 16) {
@@ -32,7 +32,7 @@ struct SectionRow: View {
                 .padding(12)
                 .background(Color(UIColor.systemBackground).opacity(0.3))
                 .mask(Circle())
-            .overlay(CircularView(value: selectedSection.progress))
+                .overlay(CircularView(value: selectedSection.progress))
             VStack(alignment: .leading, spacing: 8) {
                 Text(selectedSection.subtitle)
                     .font(.caption.weight(.medium))
@@ -50,7 +50,7 @@ struct SectionRow: View {
         }
         .padding(15)
         Divider()
-       
+        
     }
 }
 

@@ -18,6 +18,9 @@
 		29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B982A2A9A7E0048046A /* FeaturedItem.swift */; };
 		29429B9B2A2A9C400048046A /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29429B9A2A2A9C400048046A /* AppBar.swift */; };
 		294864E32A2771D9002A8DDC /* HexagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294864E22A2771D9002A8DDC /* HexagonView.swift */; };
+		294DDBDA2A5184BF009BC8EB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 294DDBD92A5184BF009BC8EB /* FirebaseStorage */; };
+		294DDBDC2A518BCB009BC8EB /* Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DDBDB2A518BCB009BC8EB /* Certificate.swift */; };
+		294DDBDE2A518E61009BC8EB /* CertificateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DDBDD2A518E61009BC8EB /* CertificateViewModel.swift */; };
 		2972B03B2A2F897C00A9D968 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B03A2A2F897C00A9D968 /* PreferenceKeys.swift */; };
 		2972B03D2A2F8E1A00A9D968 /* AnimatedFontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B03C2A2F8E1A00A9D968 /* AnimatedFontStyle.swift */; };
 		29780E4B2A329BB300750B55 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29780E4A2A329BB300750B55 /* Model.swift */; };
@@ -83,6 +86,8 @@
 		29429B982A2A9A7E0048046A /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		29429B9A2A2A9C400048046A /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
 		294864E22A2771D9002A8DDC /* HexagonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonView.swift; sourceTree = "<group>"; };
+		294DDBDB2A518BCB009BC8EB /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
+		294DDBDD2A518E61009BC8EB /* CertificateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewModel.swift; sourceTree = "<group>"; };
 		2972B03A2A2F897C00A9D968 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		2972B03C2A2F8E1A00A9D968 /* AnimatedFontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedFontStyle.swift; sourceTree = "<group>"; };
 		29780E4A2A329BB300750B55 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -141,6 +146,7 @@
 				2999B33C2A407DE100B94939 /* FirebaseFirestore in Frameworks */,
 				2999B33A2A407DE100B94939 /* FirebaseAuth in Frameworks */,
 				2987CE822A45EC3300BF0E6E /* YouTubePlayerKit in Frameworks */,
+				294DDBDA2A5184BF009BC8EB /* FirebaseStorage in Frameworks */,
 				2999B3362A407DE100B94939 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +207,7 @@
 				29EDC36D2A3A4B1D0009A2E7 /* Handbook.swift */,
 				29EDC3732A3A4C5A0009A2E7 /* Topic.swift */,
 				29AA11CB2A3F177300A9FDBF /* User.swift */,
+				294DDBDB2A518BCB009BC8EB /* Certificate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +220,13 @@
 				2985AE602A31246F00EF2111 /* Animations.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		294DDBD82A5184BF009BC8EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2984783F2A4724FF00915570 /* Cards */ = {
@@ -244,6 +258,7 @@
 				29076D392A42617D003541C2 /* SearchViewModel.swift */,
 				29D50D8D2A437DD400EEB763 /* ExploreViewModel.swift */,
 				29D50D8F2A4397A500EEB763 /* CourseViewModel.swift */,
+				294DDBDD2A518E61009BC8EB /* CertificateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -253,6 +268,7 @@
 			children = (
 				29B5DF582A25F770005501B7 /* ArtVerse */,
 				29B5DF572A25F770005501B7 /* Products */,
+				294DDBD82A5184BF009BC8EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,6 +410,7 @@
 				2999B3392A407DE100B94939 /* FirebaseAuth */,
 				2999B33B2A407DE100B94939 /* FirebaseFirestore */,
 				2987CE812A45EC3300BF0E6E /* YouTubePlayerKit */,
+				294DDBD92A5184BF009BC8EB /* FirebaseStorage */,
 			);
 			productName = ArtVerse;
 			productReference = 29B5DF562A25F770005501B7 /* ArtVerse.app */;
@@ -462,6 +479,7 @@
 				293A8E1C2A3E29A3000484D9 /* GradientText.swift in Sources */,
 				29EDC36C2A3A48C80009A2E7 /* SmallCourseItem.swift in Sources */,
 				29EDC3662A3A46400009A2E7 /* PlayButton.swift in Sources */,
+				294DDBDC2A518BCB009BC8EB /* Certificate.swift in Sources */,
 				29C234FE2A2754ED001ED417 /* AccountView.swift in Sources */,
 				29886A032A379BEA0083F2BA /* RegisterView.swift in Sources */,
 				29EDC36A2A3A48980009A2E7 /* ExploreView.swift in Sources */,
@@ -500,6 +518,7 @@
 				2921C0772A40E51E00809A63 /* ColorFromString.swift in Sources */,
 				29B5DF5A2A25F770005501B7 /* ArtVerseApp.swift in Sources */,
 				29429B992A2A9A7E0048046A /* FeaturedItem.swift in Sources */,
+				294DDBDE2A518E61009BC8EB /* CertificateViewModel.swift in Sources */,
 				29EDC3702A3A4B700009A2E7 /* HandbookItem.swift in Sources */,
 				2984783E2A4724F300915570 /* CourseCardDetails.swift in Sources */,
 				29E19C792A3A00CA007F6AA7 /* SectionRow.swift in Sources */,
@@ -739,6 +758,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		294DDBD92A5184BF009BC8EB /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2999B3342A407DE100B94939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		2987CE812A45EC3300BF0E6E /* YouTubePlayerKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2987CE802A45EC3300BF0E6E /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
